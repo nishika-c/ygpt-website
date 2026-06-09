@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us &amp; Join a Club — YGPT</title>
+  <meta name="description" content="Get in touch with YGPT — join a club near you, partner with us, or reach out for any enquiry. We'd love to hear from you.">
+  <meta name="theme-color" content="#5BC4BF">
+  <link rel="canonical" href="https://ygpt.in/contact.html">
+  <link rel="icon"             href="assets/images/favicon.ico" sizes="any">
+  <link rel="icon"             href="assets/images/icon.svg"    type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest"         href="/site.webmanifest">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <style>
+    .contact-hero {
+      background-color: var(--bg-light);
+      padding-block: var(--sp-8);
+      margin-top: var(--nav-height);
+      text-align: center;
+    }
+    .contact-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(36px, 6vw, 80px);
+      letter-spacing: 3px;
+      color: var(--black);
+    }
+    .contact-hero p {
+      font-size: 16px;
+      color: var(--grey);
+      max-width: 520px;
+      margin: var(--sp-2) auto 0;
+      line-height: 1.6;
+    }
+    .contact-layout {
+      padding-block: var(--sp-8);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-7);
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-family: var(--font-heading);
+      font-size: 40px;
+      letter-spacing: 2px;
+      color: var(--black);
+      margin-bottom: var(--sp-4);
+    }
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-5);
+    }
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .contact-item-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .contact-item-value {
+      font-size: 16px;
+      color: var(--black);
+      text-decoration: none;
+      transition: color var(--ease-snap);
+    }
+    .contact-item-value:hover { color: var(--teal); }
+    .contact-form-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp-5);
+    }
+    .contact-form-wrap h2 {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      letter-spacing: 2px;
+      color: var(--black);
+      margin-bottom: var(--sp-4);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-1);
+    }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      letter-spacing: 0.5px;
+    }
+    .form-label .req {
+      color: var(--orange);
+      margin-left: 2px;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-radius: var(--r);
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--black);
+      background: var(--white);
+      outline: none;
+      transition: border-color var(--ease-smooth);
+      min-height: 44px;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus { border-color: var(--teal); }
+    .form-input[aria-invalid="true"],
+    .form-select[aria-invalid="true"],
+    .form-textarea[aria-invalid="true"] { border-color: var(--orange); }
+    .form-textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
+    .form-select { appearance: none; cursor: pointer; }
+    .form-feedback {
+      font-size: 14px;
+      min-height: 20px;
+      margin-top: var(--sp-2);
+    }
+    .form-feedback:empty { display: none; }
+    .form-feedback--success { color: var(--green); }
+    .form-feedback--error   { color: var(--orange); }
+    .form-submit { margin-top: var(--sp-3); width: 100%; justify-content: center; }
+    /* CON-01: Purpose / intent selector styles */
+    .form-purpose-fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+    .form-purpose-fieldset legend {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      letter-spacing: 0.5px;
+      margin-bottom: var(--sp-2);
+      display: block;
+    }
+    .form-purpose-options {
+      display: flex;
+      gap: var(--sp-2);
+      flex-wrap: wrap;
+    }
+    .form-purpose-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .form-purpose-option input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--teal);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .form-purpose-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      padding: 8px 16px;
+      border: 2px solid var(--border);
+      border-radius: var(--r-full);
+      cursor: pointer;
+      transition: border-color var(--ease-snap), background-color var(--ease-snap), color var(--ease-snap);
+      white-space: nowrap;
+    }
+    .form-purpose-option input[type="radio"]:checked + .form-purpose-label {
+      border-color: var(--teal);
+      background-color: var(--teal-light);
+      color: var(--teal);
+    }
+    .form-purpose-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    @media (max-width: 480px) {
+      .form-purpose-options { flex-direction: column; gap: 8px; }
+    }
+    @media (max-width: 768px) {
+      .contact-layout { grid-template-columns: 1fr; gap: var(--sp-5); }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-field.full { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+<script>document.body.classList.add('js-enabled');</script>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <a href="index.html">
+    <img src="assets/images/logo.png" alt="YGPT — Youth For Global Peace &amp; Transformation"
+         class="nav-logo" width="160" height="44" loading="eager" decoding="auto" fetchpriority="high">
+  </a>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html#hero">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#initiatives">Initiatives</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="clubs.html">Clubs</a></li>
+    <li><a href="index.html#sponsors">Grow <span class="nav-dropdown-indicator" aria-hidden="true">&#9660;</span></a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
+    <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+    </button>
+    <a href="contact.html" class="nav-icon-btn" aria-label="Join YGPT — member profile" title="Join / Profile">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    </a>
+  </div>
+  <button class="nav-hamburger" type="button" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+</nav>
+
+<main id="main-content">
+
+  <section class="contact-hero" aria-label="Contact page hero">
+    <div class="container">
+      <p class="section-tag">Reach Out</p>
+      <h1>Contact Us</h1>
+      <p>Join a club near you, partner with YGPT, or simply say hello. We are always happy to connect with youth who want to make a difference.</p>
+    </div>
+  </section>
+
+  <section class="contact-section" aria-labelledby="contact-form-heading">
+    <div class="container">
+      <div class="contact-layout">
+
+        <div class="contact-info" data-animate>
+          <h2>Get in Touch</h2>
+          <div class="contact-detail">
+            <div class="contact-item">
+              <span class="contact-item-label">Email</span>
+              <a href="mailto:info@ygpt.in" class="contact-item-value">info@ygpt.in</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-item-label">Phone / WhatsApp</span>
+              <a href="tel:+919136992712" class="contact-item-value">+91 91369 92712</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-item-label">Instagram</span>
+              <a href="https://www.instagram.com/ygpt_official" target="_blank" rel="noopener noreferrer"
+                 class="contact-item-value" aria-label="YGPT Instagram (opens external site)">@ygpt_official</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-item-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/company/ygpt" target="_blank" rel="noopener noreferrer"
+                 class="contact-item-value" aria-label="YGPT LinkedIn (opens external site)">linkedin.com/company/ygpt</a>
+            </div>
+          </div>
+          <h3 style="font-family:var(--font-heading);font-size:24px;letter-spacing:1px;margin-bottom:var(--sp-2);">Club Locations</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+            <li style="font-size:15px;color:var(--grey);">&#9679; Mumbai &amp; Navi Mumbai</li>
+            <li style="font-size:15px;color:var(--grey);">&#9679; Pune</li>
+            <li style="font-size:15px;color:var(--grey);">&#9679; Delhi</li>
+            <li style="font-size:15px;color:var(--grey);">&#9679; Hyderabad</li>
+            <li style="font-size:15px;color:var(--grey);">&#9679; Amritsar &middot; Ludhiana &middot; Chandigarh</li>
+          </ul>
+        </div>
+
+        <div class="contact-form-wrap" data-animate>
+          <h2 id="contact-form-heading">Send Us a Message</h2>
+
+          <!-- Netlify Forms contact form -->
+          <form id="contact-form"
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                novalidate
+                aria-label="Contact form">
+
+            <input type="hidden" name="form-name" value="contact">
+            <!-- Honeypot -->
+            <input type="text" name="bot-field" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="form-grid">
+
+              <!-- CON-01: Purpose selector — Join as Member / Start Club / Partner -->
+              <div class="form-field full">
+                <fieldset class="form-purpose-fieldset" aria-required="true">
+                  <legend class="form-label">I want to <span class="req" aria-hidden="true">*</span></legend>
+                  <div class="form-purpose-options" role="radiogroup">
+                    <label class="form-purpose-option">
+                      <input type="radio" name="purpose" value="Join as Member" required>
+                      <span class="form-purpose-label">Join as Member</span>
+                    </label>
+                    <label class="form-purpose-option">
+                      <input type="radio" name="purpose" value="Start Club">
+                      <span class="form-purpose-label">Start a Club</span>
+                    </label>
+                    <label class="form-purpose-option">
+                      <input type="radio" name="purpose" value="Partner">
+                      <span class="form-purpose-label">Partner with YGPT</span>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="contact-name">Full Name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="contact-name" name="name" class="form-input"
+                       placeholder="Your full name"
+                       required aria-required="true" maxlength="100"
+                       autocomplete="name">
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="contact-email">Email Address <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="contact-email" name="email" class="form-input"
+                       placeholder="your@email.com"
+                       required aria-required="true" maxlength="254"
+                       autocomplete="email">
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="contact-phone">Phone (Optional)</label>
+                <input type="tel" id="contact-phone" name="phone" class="form-input"
+                       placeholder="+91 XXXXX XXXXX"
+                       maxlength="20"
+                       autocomplete="tel">
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="city">City (Optional)</label>
+                <select id="city" name="city" class="form-select">
+                  <option value="">Select your city</option>
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Navi Mumbai">Navi Mumbai</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Hyderabad">Hyderabad</option>
+                  <option value="Amritsar">Amritsar</option>
+                  <option value="Ludhiana">Ludhiana</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-field full">
+                <label class="form-label" for="contact-message">Message <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="contact-message" name="message" class="form-textarea"
+                          placeholder="Tell us how we can help, or which club you'd like to join…"
+                          required aria-required="true" maxlength="2000"
+                          rows="5"></textarea>
+              </div>
+
+            </div>
+
+            <p id="contact-feedback" class="form-feedback" role="alert" aria-live="polite" aria-atomic="true"></p>
+            <button type="submit" class="btn-dark form-submit">Send Message &rarr;</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html">
+          <img src="assets/images/logo.png" alt="YGPT logo" class="footer-logo" width="140" height="40" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-tagline">Youth &middot; Peace &middot; Transformation</p>
+        <p class="footer-powered">Powered by MaitriBodh Parivaar</p>
+        <a class="footer-contact" href="mailto:info@ygpt.in">info@ygpt.in</a>
+        <a class="footer-contact" href="tel:+919136992712">+91 91369 92712</a>
+      </div>
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="https://www.ygpt.in/founder" target="_blank" rel="noopener noreferrer" aria-label="Our Founder (opens legacy site)">Our Founder</a></li>
+            <li><a href="index.html#initiatives">Initiatives</a></li>
+            <li><a href="events.html">Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Engage</h4>
+          <ul role="list">
+            <li><a href="contact.html">Join a Club</a></li>
+            <li><a href="https://www.ygpt.in/transformation" target="_blank" rel="noopener noreferrer" aria-label="Youth Transformation (opens legacy site)">Youth Transformation</a></li>
+            <li><a href="https://www.ygpt.in/impact" target="_blank" rel="noopener noreferrer" aria-label="Our Impact (opens legacy site)">Our Impact</a></li>
+            <li><a href="index.html#sponsors">Support Our Cause</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul role="list">
+            <li><a href="https://www.instagram.com/ygpt_official" target="_blank" rel="noopener noreferrer" aria-label="YGPT Instagram (opens external site)">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/ygpt" target="_blank" rel="noopener noreferrer" aria-label="YGPT LinkedIn (opens external site)">LinkedIn</a></li>
+            <li><a href="mailto:info@ygpt.in">Email Us</a></li>
+            <li><a href="https://wa.me/919136992712" target="_blank" rel="noopener noreferrer" aria-label="YGPT WhatsApp (opens external site)">WhatsApp</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2024&ndash;<span id="year"></span> YGPT &mdash; Youth For Global Peace &amp; Transformation</p>
+      <div class="footer-legal">
+        <a class="footer-policy-link" href="terms.html">Terms &amp; Conditions</a>
+        <a class="footer-policy-link" href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" type="button" id="back-to-top" aria-label="Back to top" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<script src="js/main.js"></script>
+<script>
+/* Contact form submission */
+(function initContactForm() {
+  try {
+    const form     = document.getElementById('contact-form');
+    const feedback = document.getElementById('contact-feedback');
+    const submitBtn = form?.querySelector('[type="submit"]');
+    if (!form || !feedback) return;
+
+    function isValidEmail(e) {
+      return e.length >= 5 && e.length <= 254 &&
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(e);
+    }
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      feedback.textContent = '';
+      feedback.className = 'form-feedback';
+
+      const name    = form.querySelector('#contact-name');
+      const email   = form.querySelector('#contact-email');
+      const message = form.querySelector('#contact-message');
+      const botField = form.querySelector('[name="bot-field"]');
+
+      if (botField && botField.value) {
+        feedback.textContent = 'Message sent! We will be in touch soon.';
+        feedback.className = 'form-feedback form-feedback--success';
+        form.reset();
+        return;
+      }
+
+      let valid = true;
+
+      [name, email, message].forEach(el => el.removeAttribute('aria-invalid'));
+
+      if (!name.value.trim()) {
+        name.setAttribute('aria-invalid', 'true');
+        name.focus();
+        valid = false;
+      }
+      if (!isValidEmail(email.value.trim())) {
+        email.setAttribute('aria-invalid', 'true');
+        if (valid) email.focus();
+        valid = false;
+      }
+      if (!message.value.trim()) {
+        message.setAttribute('aria-invalid', 'true');
+        if (valid) message.focus();
+        valid = false;
+      }
+
+      if (!valid) {
+        feedback.textContent = 'Please fill in all required fields correctly.';
+        feedback.className = 'form-feedback form-feedback--error';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        // Collect form fields for Formspree JSON POST
+        const name    = form.querySelector('#contact-name')?.value?.trim()    || '';
+        const email   = form.querySelector('#contact-email')?.value?.trim()   || '';
+        const phone   = form.querySelector('#contact-phone')?.value?.trim()   || '';
+        const city    = form.querySelector('#city')?.value?.trim()            || '';
+        const message = form.querySelector('#contact-message')?.value?.trim() || '';
+        const purpose = form.querySelector('[name="purpose"]:checked')?.value || '';
+
+        // TODO: Replace YOUR_CONTACT_FORM_ID with your real Formspree contact form ID.
+        //       Log into formspree.io → create a new form → paste the ID here.
+        //       Keep Content-Type: application/json and Accept: application/json as-is.
+        const CONTACT_FORMSPREE = 'https://formspree.io/f/xvznkqgd'
+        const response = await fetch(CONTACT_FORMSPREE, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({ name, email, phone, city, message, purpose }),
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (response.ok) {
+          feedback.textContent = 'Message sent! We will be in touch soon.';
+          feedback.className = 'form-feedback form-feedback--success';
+          form.reset();
+        } else {
+          const errMsg = result?.errors?.[0]?.message || 'Submission failed. Please try again.';
+          throw new Error(errMsg);
+        }
+      } catch (err) {
+        feedback.textContent = 'Network error. Please email us at info@ygpt.in directly.';
+        feedback.className = 'form-feedback form-feedback--error';
+        console.warn('[YGPT Contact] Submit error:', err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message →';
+      }
+    });
+  } catch (err) {
+    console.warn('[YGPT] initContactForm failed:', err);
+  }
+})();
+</script>
+</body>
+</html>

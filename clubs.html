@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find a Club — YGPT</title>
+  <meta name="description" content="Find a YGPT club near you — Mumbai, Pune, Delhi, Hyderabad, Amritsar, Ludhiana, Chandigarh. Join a community of youth changemakers today.">
+  <meta name="theme-color" content="#5BC4BF">
+  <link rel="canonical" href="https://ygpt.in/clubs.html">
+  <link rel="icon"             href="assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon"             href="assets/favicon/icon.svg"    type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest"         href="assets/favicon/site.webmanifest">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <style>
+    .page-hero {
+      background-color: var(--bg-light);
+      padding-block: var(--sp-8);
+      margin-top: var(--nav-height);
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(40px, 7vw, 96px);
+      letter-spacing: 3px;
+      color: var(--black);
+      line-height: 1;
+    }
+    .page-hero p {
+      font-size: 16px;
+      color: var(--grey);
+      max-width: 560px;
+      margin: var(--sp-3) auto 0;
+      line-height: 1.7;
+    }
+    .clubs-page { padding-block: var(--sp-8); }
+    .clubs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-7);
+    }
+    .club-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: var(--sp-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color var(--ease-smooth), box-shadow var(--ease-smooth), transform var(--ease-smooth);
+    }
+    .club-card:hover {
+      border-color: var(--teal);
+      box-shadow: var(--shadow-teal);
+      transform: translateY(-4px);
+    }
+    .club-card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .club-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: var(--r-full);
+      flex-shrink: 0;
+    }
+    .club-dot[data-theme="teal"]   { background-color: var(--teal); }
+    .club-dot[data-theme="orange"] { background-color: var(--orange); }
+    .club-dot[data-theme="violet"] { background-color: var(--violet); }
+    .club-dot[data-theme="green"]  { background-color: var(--green); }
+    .club-dot[data-theme="yellow"] { background-color: var(--yellow); }
+    .club-card h3 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      letter-spacing: 1px;
+      color: var(--black);
+    }
+    .club-card p { font-size: 14px; line-height: 1.6; color: var(--grey); flex: 1; }
+    .club-card-cta {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-top: auto;
+    }
+    .clubs-cta-bar {
+      background: var(--teal);
+      border-radius: var(--r);
+      padding: var(--sp-5);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-3);
+    }
+    .clubs-cta-bar p {
+      font-family: var(--font-heading);
+      font-size: clamp(20px, 2.8vw, 36px);
+      letter-spacing: 2px;
+      color: var(--white);
+    }
+    @media (max-width: 768px) {
+      .clubs-grid { grid-template-columns: 1fr; }
+      .clubs-cta-bar { flex-direction: column; text-align: center; }
+      .clubs-cta-bar .btn-light { width: 100%; justify-content: center; }
+    }
+    @media (min-width: 481px) and (max-width: 768px) {
+      .clubs-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<script>document.body.classList.add('js-enabled');</script>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <a href="index.html">
+    <img src="assets/images/logo.png" alt="YGPT — Youth For Global Peace &amp; Transformation"
+         class="nav-logo" width="160" height="44" loading="eager" decoding="auto" fetchpriority="high">
+  </a>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#initiatives">Initiatives</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="clubs.html" aria-current="page">Clubs</a></li>
+    <li><a href="index.html#sponsors">Grow <span class="nav-dropdown-indicator" aria-hidden="true">&#9660;</span></a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
+    <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+    </button>
+    <a href="contact.html" class="nav-icon-btn" aria-label="Join YGPT — member profile" title="Join / Profile">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    </a>
+  </div>
+  <button class="nav-hamburger" type="button" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+</nav>
+
+<main id="main-content">
+
+  <section class="page-hero" aria-label="Clubs page hero">
+    <div class="container">
+      <p class="section-tag">13 Clubs Across India</p>
+      <h1>Find Your Club</h1>
+      <p>YGPT clubs are active across India — a welcoming, judgement-free space where youth come together to transform, serve, and connect.</p>
+    </div>
+  </section>
+
+  <section class="clubs-page" aria-labelledby="clubs-heading">
+    <div class="container">
+      <h2 id="clubs-heading" class="sr-only">Club locations</h2>
+
+      <div class="clubs-grid" data-animate-stagger>
+
+        <a class="club-card" href="contact.html?city=Mumbai" data-animate>
+          <div class="club-card-header">
+            <span class="club-dot" data-theme="teal" aria-hidden="true"></span>
+            <h3>Mumbai &amp; Navi Mumbai</h3>
+          </div>
+          <p>Our flagship club — active with regular seminars, service drives, and community events across Mumbai and Navi Mumbai.</p>
+          <span class="club-card-cta">Join This Club &rarr;</span>
+        </a>
+
+        <a class="club-card" href="contact.html?city=Pune" data-animate>
+          <div class="club-card-header">
+            <span class="club-dot" data-theme="orange" aria-hidden="true"></span>
+            <h3>Pune</h3>
+          </div>
+          <p>A thriving club in Pune with strong university ties — VIIT Pune and more. Known for its Earth Embrace drives and youth development sessions.</p>
+          <span class="club-card-cta">Join This Club &rarr;</span>
+        </a>
+
+        <a class="club-card" href="contact.html?city=Delhi" data-animate>
+          <div class="club-card-header">
+            <span class="club-dot" data-theme="violet" aria-hidden="true"></span>
+            <h3>Delhi</h3>
+          </div>
+          <p>Active in Delhi with seminars at JNU and community service drives across the capital. A growing and energetic club.</p>
+          <span class="club-card-cta">Join This Club &rarr;</span>
+        </a>
+
+        <a class="club-card" href="contact.html?city=Hyderabad" data-animate>
+          <div class="club-card-header">
+            <span class="club-dot" data-theme="green" aria-hidden="true"></span>
+            <h3>Hyderabad</h3>
+          </div>
+          <p>The Hyderabad club is known for its Share Some Love drives and youth transformation sessions across the city.</p>
+          <span class="club-card-cta">Join This Club &rarr;</span>
+        </a>
+
+        <a class="club-card" href="contact.html?city=Amritsar" data-animate>
+          <div class="club-card-header">
+            <span class="club-dot" data-theme="yellow" aria-hidden="true"></span>
+            <h3>Amritsar</h3>
+          </div>
+          <p>Punjab's Amritsar club runs active blood donation camps and community visits, embodying the spirit of selfless service.</p>
+          <span class="club-card-cta">Join This Club &rarr;</span>
+        </a>
+
+        <a class="club-card" href="contact.html?city=Ludhiana" data-animate>
+          <div class="club-card-header">
+            <span class="club-dot" data-theme="yellow" aria-hidden="true"></span>
+            <h3>Ludhiana</h3>
+          </div>
+          <p>One of YGPT's fastest growing clubs — passionate about inner transformation and environmental action in Punjab.</p>
+          <span class="club-card-cta">Join This Club &rarr;</span>
+        </a>
+
+        <a class="club-card" href="contact.html?city=Chandigarh" data-animate>
+          <div class="club-card-header">
+            <span class="club-dot" data-theme="yellow" aria-hidden="true"></span>
+            <h3>Chandigarh</h3>
+          </div>
+          <p>Based in the City Beautiful, Chandigarh's club is active with student communities and green drives across the tricity.</p>
+          <span class="club-card-cta">Join This Club &rarr;</span>
+        </a>
+
+      </div>
+
+      <div class="clubs-cta-bar" data-animate aria-label="Start your own club">
+        <p>Don't See Your City? Start a Club.</p>
+        <a href="contact.html" class="btn-light">Get in Touch &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+
+      <!-- CLUB-01: Google Maps embed — shows club locations across India -->
+      <div class="clubs-map-section" aria-labelledby="clubs-map-heading">
+        <h2 id="clubs-map-heading" class="clubs-map-heading">Find Us On The Map</h2>
+        <div class="clubs-map-wrap" role="region" aria-label="Google Maps showing YGPT club locations across India">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7416015.384937617!2d71.58808395!3d20.593684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            class="clubs-map-iframe"
+            width="100%"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map of India showing YGPT club locations in Mumbai, Pune, Delhi, Hyderabad, Amritsar, Ludhiana, and Chandigarh"
+            aria-label="Interactive map of India showing YGPT club locations"></iframe>
+        </div>
+        <p class="clubs-map-note">Clubs active in Mumbai &amp; Navi Mumbai &middot; Pune &middot; Delhi &middot; Hyderabad &middot; Amritsar &middot; Ludhiana &middot; Chandigarh. <a href="contact.html">Contact us</a> to find your nearest club.</p>
+      </div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html">
+          <img src="assets/images/logo.png" alt="YGPT logo" class="footer-logo" width="140" height="40" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-tagline">Youth &middot; Peace &middot; Transformation</p>
+        <p class="footer-powered">Powered by MaitriBodh Parivaar</p>
+        <a class="footer-contact" href="mailto:info@ygpt.in">info@ygpt.in</a>
+        <a class="footer-contact" href="tel:+919136992712">+91 91369 92712</a>
+      </div>
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="https://www.ygpt.in/founder" target="_blank" rel="noopener noreferrer" aria-label="Our Founder (opens legacy site)">Our Founder</a></li>
+            <li><a href="index.html#initiatives">Initiatives</a></li>
+            <li><a href="events.html">Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Engage</h4>
+          <ul role="list">
+            <li><a href="contact.html">Join a Club</a></li>
+            <li><a href="https://www.ygpt.in/transformation" target="_blank" rel="noopener noreferrer" aria-label="Youth Transformation (opens legacy site)">Youth Transformation</a></li>
+            <li><a href="https://www.ygpt.in/impact" target="_blank" rel="noopener noreferrer" aria-label="Our Impact (opens legacy site)">Our Impact</a></li>
+            <li><a href="index.html#sponsors">Support Our Cause</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul role="list">
+            <li><a href="https://www.instagram.com/ygpt_official" target="_blank" rel="noopener noreferrer" aria-label="YGPT Instagram (opens external site)">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/ygpt" target="_blank" rel="noopener noreferrer" aria-label="YGPT LinkedIn (opens external site)">LinkedIn</a></li>
+            <li><a href="mailto:info@ygpt.in">Email Us</a></li>
+            <li><a href="https://wa.me/919136992712" target="_blank" rel="noopener noreferrer" aria-label="YGPT WhatsApp (opens external site)">WhatsApp</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2024&ndash;<span id="year"></span> YGPT &mdash; Youth For Global Peace &amp; Transformation</p>
+      <div class="footer-legal">
+        <a class="footer-policy-link" href="terms.html">Terms &amp; Conditions</a>
+        <a class="footer-policy-link" href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" type="button" id="back-to-top" aria-label="Back to top" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+<script src="js/main.js"></script>
+</body>
+</html>

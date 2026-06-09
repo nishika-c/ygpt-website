@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — YGPT</title>
+  <meta name="description" content="Learn about YGPT — founded by Maitreya Dadashreeji, our mission, our values, and the youth-led movement transforming India through inner transformation, service, and environmental action.">
+  <meta name="theme-color" content="#5BC4BF">
+  <link rel="canonical" href="https://ygpt.in/about.html">
+  <link rel="icon"             href="assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon"             href="assets/favicon/icon.svg"    type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest"         href="assets/favicon/site.webmanifest">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <style>
+    .page-hero {
+      background-color: var(--bg-light);
+      padding-block: var(--sp-8);
+      margin-top: var(--nav-height);
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(40px, 7vw, 96px);
+      letter-spacing: 3px;
+      color: var(--black);
+      line-height: 1;
+    }
+    .page-hero p {
+      font-size: 16px;
+      color: var(--grey);
+      max-width: 600px;
+      margin: var(--sp-3) auto 0;
+      line-height: 1.7;
+    }
+    .about-page { padding-block: var(--sp-8); }
+    .about-page .about-inner {
+      display: flex;
+      gap: var(--sp-7);
+      align-items: center;
+      margin-bottom: var(--sp-8);
+    }
+    .about-page .about-inner img {
+      width: 480px;
+      height: 380px;
+      object-fit: cover;
+      border-radius: var(--r);
+      flex-shrink: 0;
+    }
+    .about-page .about-text {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+    .about-page .about-text h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(32px, 4vw, 52px);
+      letter-spacing: 2px;
+      color: var(--black);
+    }
+    .about-page .about-text p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--grey);
+    }
+    .values-section { padding-block: var(--sp-8); background: var(--bg-light); }
+    .values-section h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 52px);
+      letter-spacing: 2px;
+      color: var(--black);
+      margin-bottom: var(--sp-5);
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-3);
+    }
+    .value-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: var(--sp-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+    .value-card h3 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      letter-spacing: 1px;
+      color: var(--teal);
+    }
+    .value-card p { font-size: 15px; line-height: 1.6; color: var(--grey); }
+    .founder-section { padding-block: var(--sp-8); }
+    .founder-inner {
+      display: flex;
+      gap: var(--sp-7);
+      align-items: flex-start;
+    }
+    /* ABOUT-02: Founder portrait */
+    .founder-portrait {
+      flex-shrink: 0;
+      width: 360px;
+    }
+    .founder-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: var(--r);
+      display: block;
+      background-color: var(--grey-light);
+      min-height: 420px;
+    }
+    /* ABOUT-02: Founder tagline */
+    .founder-tagline {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: var(--orange);
+      margin-top: calc(-1 * var(--sp-1));
+    }
+    /* ABOUT-03: Discovering the Vision subheading */
+    .founder-subheading {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-top: var(--sp-3);
+      margin-bottom: var(--sp-1);
+    }
+    @media (max-width: 768px) {
+      .founder-inner { flex-direction: column; }
+      .founder-portrait { width: 100%; }
+      .founder-img { min-height: 280px; }
+    }
+    /* ABOUT-01: team section on about page uses white bg instead of yellow */
+    .team--about { background-color: var(--bg-light); }
+    .team--about .section-hdr h2 { color: var(--black); }
+    @media (max-width: 768px) {
+      .about-page .about-inner { flex-direction: column; }
+      .about-page .about-inner img { width: 100%; height: 240px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .founder-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<script>document.body.classList.add('js-enabled');</script>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <a href="index.html">
+    <img src="assets/images/logo.png" alt="YGPT — Youth For Global Peace &amp; Transformation"
+         class="nav-logo" width="160" height="44" loading="eager" decoding="auto" fetchpriority="high">
+  </a>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" aria-current="page">About</a></li>
+    <li><a href="index.html#initiatives">Initiatives</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="clubs.html">Clubs</a></li>
+    <li><a href="index.html#sponsors">Grow <span class="nav-dropdown-indicator" aria-hidden="true">&#9660;</span></a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
+    <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+    </button>
+    <a href="contact.html" class="nav-icon-btn" aria-label="Join YGPT — member profile" title="Join / Profile">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    </a>
+  </div>
+  <button class="nav-hamburger" type="button" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+</nav>
+
+<main id="main-content">
+
+  <section class="page-hero" aria-label="About page hero">
+    <div class="container">
+      <p class="section-tag">01 &middot; About Us</p>
+      <h1>Who We Are</h1>
+      <p>A vibrant, youth-led movement founded on the vision of a <span lang="hi">Chinta Mukt</span> Bharat — a stress-free, compassionate, and transformed India.</p>
+    </div>
+  </section>
+
+  <section class="about-page" aria-labelledby="about-mission-heading">
+    <div class="container">
+
+      <div class="about-inner" data-animate>
+        <img src="assets/images/about.webp"
+             alt="YGPT youth volunteers relaxing together outdoors — a warm, judgement-free community space"
+             width="480" height="380"
+             loading="lazy" decoding="async">
+        <div class="about-text">
+          <p class="section-tag">Our Story</p>
+          <h2 id="about-mission-heading">About YGPT</h2>
+          <p>Founded by Global Humanitarian and Transformation Pioneer, Maitreya Dadashreeji, YGPT is a vibrant community of like-minded youth — students and professionals from diverse backgrounds, united by a shared commitment to humanity, peace, and Mother Earth.</p>
+          <p>Our mission is to build the emotional intelligence and resilience of youth through transformative development sessions, selfless acts of service, and green environmental initiatives. YGPT provides a welcoming, judgement-free, friendly space filled with positivity, genuine connections, and support.</p>
+          <p>Since our founding in 2013, we have touched over 1 Lakh lives across India — through 13 clubs, 40+ institutes, and a growing community of changemakers who believe that inner transformation is the foundation of global peace.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="values-section" aria-labelledby="values-heading">
+    <div class="container">
+      <h2 id="values-heading" data-animate>Our Core Values</h2>
+      <div class="values-grid" data-animate-stagger>
+
+        <div class="value-card" data-animate>
+          <h3>Inner Transformation</h3>
+          <p>We believe lasting change in the world begins within. Our seminars, mentoring, and the Youth Bodh workshop help youth discover clarity, purpose, and emotional resilience.</p>
+        </div>
+
+        <div class="value-card" data-animate>
+          <h3>Selfless Service</h3>
+          <p>From blood donation camps and food drives to visiting orphanages and old age homes — we act on our belief that small, consistent acts of kindness build a compassionate society.</p>
+        </div>
+
+        <div class="value-card" data-animate>
+          <h3>Environmental Action</h3>
+          <p>Through tree plantation drives, clean-up campaigns, and Valuing Mother Earth seminars, we are nurturing a generation of green champions committed to healing our planet.</p>
+        </div>
+
+        <div class="value-card" data-animate>
+          <h3>Inclusivity</h3>
+          <p>YGPT is a judgement-free space. We welcome youth from all backgrounds, beliefs, and cities — united by a shared love for humanity and a desire to make a difference.</p>
+        </div>
+
+        <div class="value-card" data-animate>
+          <h3>Community</h3>
+          <p>With 13 clubs across India — from Mumbai and Pune to Delhi, Hyderabad, and Punjab — we are building a network of changemakers who support and inspire each other.</p>
+        </div>
+
+        <div class="value-card" data-animate>
+          <h3>Youth Leadership</h3>
+          <p>Every event, every drive, every seminar is youth-led. We don't just talk about empowering youth — we give them the tools, mentorship, and platform to lead.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT-01: Team section — Uurmi, Rigved, Jasmine, Sneha -->
+  <section class="team team--about" aria-labelledby="team-about-heading">
+    <div class="container">
+      <div class="section-hdr">
+        <h2 id="team-about-heading">Our Team</h2>
+      </div>
+      <div class="team-grid" role="list" data-animate-stagger aria-label="YGPT team members">
+
+        <article class="team-card" role="listitem" data-animate>
+          <div class="team-photo-wrap">
+            <img src="assets/images/team-uurmi.webp"
+                 alt="Uurmi Kaur — Pan India Lead, Celebrity Make-Up Artist"
+                 class="team-photo"
+                 width="280" height="320"
+                 loading="lazy" decoding="async">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Uurmi Kaur</p>
+            <p class="team-role">Pan India Lead</p>
+            <p class="team-title">Celebrity Make-Up Artist</p>
+          </div>
+        </article>
+
+        <article class="team-card" role="listitem" data-animate>
+          <div class="team-photo-wrap">
+            <img src="assets/images/team-rigved.webp"
+                 alt="Rigved Sawant — Head of Earth Embrace, Entrepreneur"
+                 class="team-photo"
+                 width="280" height="320"
+                 loading="lazy" decoding="async">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Rigved Sawant</p>
+            <p class="team-role">Head of Earth Embrace</p>
+            <p class="team-title">Entrepreneur</p>
+          </div>
+        </article>
+
+        <article class="team-card" role="listitem" data-animate>
+          <div class="team-photo-wrap">
+            <img src="assets/images/team-jasmine.webp"
+                 alt="Jasmine Pahwa — Youth Development Lead, Founder of Do Good Foundation"
+                 class="team-photo"
+                 width="280" height="320"
+                 loading="lazy" decoding="async">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Jasmine Pahwa</p>
+            <p class="team-role">Youth Development Lead</p>
+            <p class="team-title">Founder, Do Good Foundation</p>
+          </div>
+        </article>
+
+        <article class="team-card" role="listitem" data-animate>
+          <div class="team-photo-wrap">
+            <img src="assets/images/team-sneha.webp"
+                 alt="Sneha Laghate — Outreach Coordinator, CSR Professional"
+                 class="team-photo"
+                 width="280" height="320"
+                 loading="lazy" decoding="async">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Sneha Laghate</p>
+            <p class="team-role">Outreach Coordinator</p>
+            <p class="team-title">CSR Professional</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="founder-section" aria-labelledby="founder-heading">
+    <div class="container">
+      <div class="founder-inner" data-animate>
+
+        <!-- ABOUT-02: Founder portrait image placeholder -->
+        <div class="founder-portrait">
+          <img src="assets/images/founder-maitreya.webp"
+               alt="Maitreya Dadashreeji — Enabling the Youth; Transforming the World!"
+               class="founder-img"
+               width="400" height="480"
+               onerror="this.style.background='var(--grey-light)';this.removeAttribute('onerror')"
+               loading="lazy"
+               decoding="async">
+        </div>
+
+        <div class="founder-text">
+          <p class="section-tag">Our Founder</p>
+          <h2 id="founder-heading">Maitreya Dadashreeji</h2>
+          <!-- ABOUT-02: Tagline from legacy ygpt.in founder page -->
+          <p class="founder-tagline">Enabling the Youth; Transforming the World!</p>
+          <p>YGPT was founded under the guidance of Maitreya Dadashreeji — a Global Humanitarian, Transformation Pioneer, and the heart behind MaitriBodh Parivaar. His vision of a <span lang="hi">Chinta Mukt</span> Bharat — a stress-free, worry-free India — is the driving force behind everything YGPT does.</p>
+          <p>Maitreya Dadashreeji believes that true transformation begins within every individual. When youth transform from the inside out — finding inner peace, emotional strength, and a sense of purpose — they naturally become agents of positive change in the world around them.</p>
+
+          <!-- ABOUT-03: Discovering the Vision subsection from legacy ygpt.in -->
+          <h3 class="founder-subheading">Discovering the Vision</h3>
+          <p>During his journey of self-reflection and personal growth, Maitreya Dadashreeji discovered that simply by serving society, individuals could immediately establish a connection with their hearts, paving the way for inner transformation and growth.</p>
+          <p>In his twenties, Maitreya Dadashreeji selflessly served society by donating food and clothing. As a doctor, he also arranged free healthcare camps, providing support to patients through blood donations and offering treatment and medication at no cost.</p>
+          <p>Recognising that youth — especially in the age group of 16 to 30 — are untapped powerhouses of energy, Maitreya Dadashreeji understood that if channelised correctly, youth can transform the world to become a better place. To foster youth transformation, he initiated 'Youth Force for Better India' with just 11 volunteers to extend the impact of doing good in the society. He conducted youth seminars, became their friend and provided guidance to help discover their highest potential.</p>
+
+          <a href="https://www.ygpt.in/founder" class="btn-dark" target="_blank" rel="noopener noreferrer" aria-label="Read more about our Founder (opens legacy site)">Read More &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="metrics" aria-label="YGPT impact statistics">
+    <div class="container">
+      <div class="metrics-inner">
+        <div class="metrics-label" aria-hidden="true">
+          <span class="metrics-title-top">IMPACT</span>
+          <span class="metrics-title-bottom">METRICS</span>
+        </div>
+        <div class="metrics-grid" role="list" aria-label="Impact numbers" data-animate-stagger>
+          <div class="metric-item" role="listitem" data-animate>
+            <span class="metric-num" data-count="100000" data-format="lakh" aria-label="One lakh plus lives positively impacted">1 Lakh+</span>
+            <div class="metric-line" aria-hidden="true"></div>
+            <span class="metric-lbl">Lives Positively Impacted</span>
+          </div>
+          <div class="metric-item" role="listitem" data-animate>
+            <span class="metric-num" data-count="16000" aria-label="16 thousand plus women supported">16,000+</span>
+            <div class="metric-line" aria-hidden="true"></div>
+            <span class="metric-lbl">Women Supported</span>
+          </div>
+          <div class="metric-item" role="listitem" data-animate>
+            <span class="metric-num" data-count="8000" aria-label="8000 plus youth in seminars">8,000+</span>
+            <div class="metric-line" aria-hidden="true"></div>
+            <span class="metric-lbl">Youth in Seminars</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html">
+          <img src="assets/images/logo.png" alt="YGPT logo" class="footer-logo" width="140" height="40" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-tagline">Youth &middot; Peace &middot; Transformation</p>
+        <p class="footer-powered">Powered by MaitriBodh Parivaar</p>
+        <a class="footer-contact" href="mailto:info@ygpt.in">info@ygpt.in</a>
+        <a class="footer-contact" href="tel:+919136992712">+91 91369 92712</a>
+      </div>
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="https://www.ygpt.in/founder" target="_blank" rel="noopener noreferrer" aria-label="Our Founder (opens legacy site)">Our Founder</a></li>
+            <li><a href="index.html#initiatives">Initiatives</a></li>
+            <li><a href="events.html">Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Engage</h4>
+          <ul role="list">
+            <li><a href="contact.html">Join a Club</a></li>
+            <li><a href="https://www.ygpt.in/transformation" target="_blank" rel="noopener noreferrer" aria-label="Youth Transformation (opens legacy site)">Youth Transformation</a></li>
+            <li><a href="https://www.ygpt.in/impact" target="_blank" rel="noopener noreferrer" aria-label="Our Impact (opens legacy site)">Our Impact</a></li>
+            <li><a href="index.html#sponsors">Support Our Cause</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul role="list">
+            <li><a href="https://www.instagram.com/ygpt_official" target="_blank" rel="noopener noreferrer" aria-label="YGPT Instagram (opens external site)">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/ygpt" target="_blank" rel="noopener noreferrer" aria-label="YGPT LinkedIn (opens external site)">LinkedIn</a></li>
+            <li><a href="mailto:info@ygpt.in">Email Us</a></li>
+            <li><a href="https://wa.me/919136992712" target="_blank" rel="noopener noreferrer" aria-label="YGPT WhatsApp (opens external site)">WhatsApp</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2024&ndash;<span id="year"></span> YGPT &mdash; Youth For Global Peace &amp; Transformation</p>
+      <div class="footer-legal">
+        <a class="footer-policy-link" href="terms.html">Terms &amp; Conditions</a>
+        <a class="footer-policy-link" href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" type="button" id="back-to-top" aria-label="Back to top" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+<script src="js/main.js"></script>
+</body>
+</html>

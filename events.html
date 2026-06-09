@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events — YGPT</title>
+  <meta name="description" content="Explore upcoming and past YGPT events — youth seminars, International Youth Day, #IamPEACE, Bharat Yuva Parivartan Yatra, and more across India.">
+  <meta name="theme-color" content="#5BC4BF">
+  <link rel="canonical" href="https://ygpt.in/events.html">
+  <link rel="icon"             href="assets/images/favicon.ico" sizes="any">
+  <link rel="icon"             href="assets/images/icon.svg"    type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest"         href="/site.webmanifest">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <style>
+    .page-hero {
+      background-color: var(--bg-light);
+      padding-block: var(--sp-8);
+      margin-top: var(--nav-height);
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(40px, 7vw, 96px);
+      letter-spacing: 3px;
+      color: var(--black);
+      line-height: 1;
+    }
+    .page-hero p {
+      font-size: 16px;
+      color: var(--grey);
+      max-width: 560px;
+      margin: var(--sp-3) auto 0;
+      line-height: 1.7;
+    }
+    .events-page { padding-block: var(--sp-8); }
+
+    /* EVT-01 to EVT-09: Filter toolbar styles */
+    .events-toolbar {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: var(--sp-3);
+      margin-bottom: var(--sp-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+    .events-toolbar-row {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      flex-wrap: wrap;
+    }
+    .events-search-wrap {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+    .events-search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--grey);
+      pointer-events: none;
+    }
+    .events-search {
+      width: 100%;
+      padding: 10px 16px 10px 40px;
+      border: 2px solid var(--border);
+      border-radius: var(--r);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--black);
+      outline: none;
+      min-height: 44px;
+      transition: border-color var(--ease-smooth);
+    }
+    .events-search:focus { border-color: var(--teal); }
+    .events-search::placeholder { color: var(--grey); }
+    .events-filter-select {
+      padding: 10px 14px;
+      border: 2px solid var(--border);
+      border-radius: var(--r);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--black);
+      background: var(--white);
+      cursor: pointer;
+      outline: none;
+      min-height: 44px;
+      min-width: 120px;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23767676' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+      transition: border-color var(--ease-smooth);
+    }
+    .events-filter-select:focus { border-color: var(--teal); }
+    .events-more-filters {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border: 2px solid var(--border);
+      border-radius: var(--r);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--grey);
+      background: var(--white);
+      cursor: pointer;
+      min-height: 44px;
+      transition: border-color var(--ease-snap), color var(--ease-snap);
+      white-space: nowrap;
+    }
+    .events-more-filters:hover { border-color: var(--teal); color: var(--teal); }
+    .events-view-toggle {
+      display: flex;
+      border: 2px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .events-view-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--grey);
+      background: var(--white);
+      border: none;
+      cursor: pointer;
+      min-height: 44px;
+      transition: background-color var(--ease-snap), color var(--ease-snap);
+      white-space: nowrap;
+    }
+    .events-view-btn + .events-view-btn { border-left: 2px solid var(--border); }
+    .events-view-btn.active,
+    .events-view-btn:hover { background-color: var(--teal-light); color: var(--teal); }
+    /* Tag chip filters */
+    .events-tags-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-top: var(--sp-1);
+      border-top: 1px solid var(--border);
+    }
+    .events-tag-chip {
+      padding: 6px 14px;
+      border-radius: var(--r-full);
+      border: 2px solid var(--border);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--grey);
+      background: var(--white);
+      cursor: pointer;
+      transition: border-color var(--ease-snap), background-color var(--ease-snap), color var(--ease-snap);
+      white-space: nowrap;
+      min-height: 36px;
+    }
+    .events-tag-chip:hover,
+    .events-tag-chip.active {
+      border-color: var(--teal);
+      background-color: var(--teal-light);
+      color: var(--teal);
+    }
+    .events-tag-chip.active { font-weight: 600; }
+    .events-tags-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--grey);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    /* Clear filters button */
+    .events-clear-btn {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--orange);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 0;
+      text-decoration: underline;
+      margin-left: auto;
+      white-space: nowrap;
+      display: none;
+    }
+    .events-clear-btn.visible { display: block; }
+    /* No results message */
+    .events-no-results {
+      font-size: 15px;
+      color: var(--grey);
+      padding: var(--sp-5) 0;
+      text-align: center;
+      display: none;
+    }
+    .events-no-results.visible { display: block; }
+    @media (max-width: 768px) {
+      .events-toolbar-row { flex-wrap: wrap; }
+      .events-search-wrap { min-width: 100%; }
+      .events-filter-select { flex: 1; min-width: 100px; }
+      .events-view-toggle { width: 100%; }
+      .events-view-btn { flex: 1; justify-content: center; }
+      .events-more-filters { width: 100%; justify-content: center; }
+    }
+    .events-full-list {
+      display: flex;
+      flex-direction: column;
+      max-width: 800px;
+    }
+    .event-section-label {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-block: var(--sp-5) var(--sp-2);
+      padding-bottom: var(--sp-1);
+      border-bottom: 2px solid var(--teal-light);
+    }
+    .event-section-label:first-child { margin-top: 0; }
+    .events-page .events-cta {
+      margin-top: var(--sp-5);
+    }
+    .event-highlight {
+      background: var(--bg-light);
+      border-radius: var(--r);
+      padding: var(--sp-5);
+      margin-bottom: var(--sp-3);
+      border: 1px solid var(--border);
+    }
+    .event-highlight h3 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      letter-spacing: 1px;
+      color: var(--black);
+      margin-bottom: var(--sp-2);
+    }
+    .event-highlight p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--grey);
+    }
+  </style>
+</head>
+<body>
+<script>document.body.classList.add('js-enabled');</script>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <a href="index.html">
+    <img src="assets/images/logo.png" alt="YGPT — Youth For Global Peace &amp; Transformation"
+         class="nav-logo" width="160" height="44" loading="eager" decoding="auto" fetchpriority="high">
+  </a>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#initiatives">Initiatives</a></li>
+    <li><a href="events.html" aria-current="page">Events</a></li>
+    <li><a href="clubs.html">Clubs</a></li>
+    <li><a href="index.html#sponsors">Grow <span class="nav-dropdown-indicator" aria-hidden="true">&#9660;</span></a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
+    <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+    </button>
+    <a href="contact.html" class="nav-icon-btn" aria-label="Join YGPT — member profile" title="Join / Profile">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    </a>
+  </div>
+  <button class="nav-hamburger" type="button" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+</nav>
+
+<main id="main-content">
+
+  <section class="page-hero" aria-label="Events page hero">
+    <div class="container">
+      <p class="section-tag">Pan India</p>
+      <h1>Our Events</h1>
+      <p>From International Youth Day to the Bharat Yuva Parivartan Yatra — YGPT brings youth together across India for transformation, service, and connection.</p>
+    </div>
+  </section>
+
+  <section class="events-page" aria-labelledby="events-list-heading">
+    <div class="container">
+
+      <h2 id="events-list-heading" class="sr-only">Full events list</h2>
+
+      <!-- EVT-01 to EVT-09: Filter & Search Toolbar -->
+      <div class="events-toolbar" role="search" aria-label="Filter and search events">
+
+        <!-- Row 1: Search + Filter dropdowns + View toggle -->
+        <div class="events-toolbar-row">
+
+          <!-- EVT-01: Search bar -->
+          <div class="events-search-wrap">
+            <svg class="events-search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="search" class="events-search" id="events-search" placeholder="Search Event, Cities or Dates" aria-label="Search events" autocomplete="off">
+          </div>
+
+          <!-- EVT-02: Location filter -->
+          <select class="events-filter-select" id="filter-location" aria-label="Filter by location">
+            <option value="">Location</option>
+            <option value="mumbai">Mumbai</option>
+            <option value="pune">Pune</option>
+            <option value="delhi">Delhi</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="punjab">Punjab</option>
+            <option value="pan-india">Pan India</option>
+            <option value="online">Online</option>
+          </select>
+
+          <!-- EVT-03: Event type filter -->
+          <select class="events-filter-select" id="filter-type" aria-label="Filter by event type">
+            <option value="">Event type</option>
+            <option value="seminar">Seminar</option>
+            <option value="workshop">Workshop</option>
+            <option value="drive">Service Drive</option>
+            <option value="celebration">Celebration</option>
+            <option value="yatra">Yatra</option>
+          </select>
+
+          <!-- EVT-04: Date filter -->
+          <select class="events-filter-select" id="filter-date" aria-label="Filter by date">
+            <option value="">Date</option>
+            <option value="this-week">This week</option>
+            <option value="this-month">This month</option>
+            <option value="next-month">Next month</option>
+            <option value="upcoming">All upcoming</option>
+            <option value="past">Past events</option>
+          </select>
+
+          <!-- EVT-05: More filters button -->
+          <button class="events-more-filters" type="button" id="events-more-filters-btn" aria-expanded="false" aria-controls="events-extra-filters">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="8" y1="12" x2="16" y2="12"></line><line x1="11" y1="18" x2="13" y2="18"></line></svg>
+            More Filters
+          </button>
+
+          <!-- EVT-06: List / Calendar view toggle -->
+          <div class="events-view-toggle" role="group" aria-label="View format">
+            <button class="events-view-btn active" type="button" id="view-list" aria-pressed="true" aria-label="List view">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              List
+            </button>
+            <button class="events-view-btn" type="button" id="view-calendar" aria-pressed="false" aria-label="Calendar view">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              Calendar
+            </button>
+          </div>
+
+          <button class="events-clear-btn" type="button" id="events-clear-btn" aria-label="Clear all filters">Clear All</button>
+
+        </div>
+
+        <!-- Row 2: Tag chips (EVT-07) — collapsible via More Filters -->
+        <div class="events-tags-row" id="events-extra-filters" aria-hidden="false">
+          <span class="events-tags-label">Topics:</span>
+          <button class="events-tag-chip" type="button" data-tag="mental-health">Mental Health</button>
+          <button class="events-tag-chip" type="button" data-tag="fitness">Fitness &amp; Wellness</button>
+          <button class="events-tag-chip" type="button" data-tag="networking">Networking</button>
+          <button class="events-tag-chip" type="button" data-tag="self-growth">Self Growth</button>
+          <button class="events-tag-chip" type="button" data-tag="action-events">Action Events</button>
+          <button class="events-tag-chip" type="button" data-tag="yoga">Yoga</button>
+          <button class="events-tag-chip" type="button" data-tag="youth-bodh">Youth Bodh</button>
+          <button class="events-tag-chip" type="button" data-tag="environment">Environment</button>
+        </div>
+
+      </div>
+
+      <!-- No results message -->
+      <p class="events-no-results" id="events-no-results" role="status" aria-live="polite">No events match your current filters. <button type="button" onclick="document.getElementById('events-clear-btn').click()" style="background:none;border:none;color:var(--teal);cursor:pointer;font:inherit;text-decoration:underline;">Clear filters</button> to see all events.</p>
+
+      <div class="events-body">
+        <div class="events-full-list" role="list" aria-label="All events" data-animate>
+
+          <p class="event-section-label">Signature Events</p>
+
+          <a class="event-row" href="https://www.ygpt.in/impact" role="listitem"
+             data-date="2026-08-12"
+             aria-label="Event: International Youth Day Celebration, 12 August 2026"
+             target="_blank" rel="noopener noreferrer">
+            <div class="event-date" aria-hidden="true">
+              <span class="ev-day">11</span>
+              <span class="ev-mon">AUG</span>
+            </div>
+            <div class="event-info">
+              <p class="ev-title">International Youth Day Celebration</p>
+              <p class="ev-sub">ShantiKshetra Premgiri Ashram, Karjat &middot; 150+ Youth</p>
+            </div>
+            <span class="ev-circle-icon" aria-hidden="true"></span>
+          </a>
+
+          <a class="event-row" href="https://www.ygpt.in/impact" role="listitem"
+             data-date="2026-09-21"
+             aria-label="Event: #IamPEACE — International Peace Day, 21 September 2026"
+             target="_blank" rel="noopener noreferrer">
+            <div class="event-date" aria-hidden="true">
+              <span class="ev-day">21</span>
+              <span class="ev-mon">SEP</span>
+            </div>
+            <div class="event-info">
+              <p class="ev-title">#IamPEACE &mdash; International Peace Day</p>
+              <p class="ev-sub">Pan India &amp; Europe &middot; 3000+ Participants</p>
+            </div>
+            <span class="ev-circle-icon" aria-hidden="true"></span>
+          </a>
+
+          <a class="event-row" href="https://www.ygpt.in/impact" role="listitem"
+             data-date="2026-10-15"
+             aria-label="Event: Bharat Yuva Parivartan Yatra 2024"
+             target="_blank" rel="noopener noreferrer">
+            <div class="event-date" aria-hidden="true">
+              <span class="ev-day">BYPY</span>
+              <span class="ev-mon">2024</span>
+            </div>
+            <div class="event-info">
+              <p class="ev-title">Bharat Yuva Parivartan Yatra</p>
+              <p class="ev-sub">Pan India &middot; 700 Changemakers &middot; Ek Bharat Hum Bharat</p>
+            </div>
+            <span class="ev-circle-icon" aria-hidden="true"></span>
+          </a>
+
+          <p class="event-section-label">Youth Development Seminars</p>
+
+          <a class="event-row" href="https://www.ygpt.in/transformation" role="listitem"
+             data-date="2026-11-14"
+             aria-label="Event: Youth Development Seminars — various institutes"
+             target="_blank" rel="noopener noreferrer">
+            <div class="event-date" aria-hidden="true">
+              <span class="ev-day">FREE</span>
+              <span class="ev-mon">SEM</span>
+            </div>
+            <div class="event-info">
+              <p class="ev-title">Youth Development Seminars</p>
+              <p class="ev-sub">Mumbai Univ &middot; BHU &middot; JNU &middot; Lucknow Univ &middot; VIIT Pune &amp; more</p>
+            </div>
+            <span class="ev-circle-icon" aria-hidden="true"></span>
+          </a>
+
+          <a class="event-row" href="https://www.ygpt.in/transformation" role="listitem"
+             data-date="2026-07-15"
+             aria-label="Event: Youth Bodh Workshop"
+             target="_blank" rel="noopener noreferrer">
+            <div class="event-date" aria-hidden="true">
+              <span class="ev-day">15</span>
+              <span class="ev-mon">JUL</span>
+            </div>
+            <div class="event-info">
+              <p class="ev-title">Youth Bodh Workshop</p>
+              <p class="ev-sub">Inner Transformation &middot; Stress &amp; Anxiety Relief &middot; Purpose Discovery</p>
+            </div>
+            <span class="ev-circle-icon" aria-hidden="true"></span>
+          </a>
+
+          <p class="event-section-label">Community Service Drives</p>
+
+          <a class="event-row" href="https://www.ygpt.in/impact" role="listitem"
+             data-date="2026-06-20"
+             aria-label="Event: Earth Embrace — World Environment Day"
+             target="_blank" rel="noopener noreferrer">
+            <div class="event-date" aria-hidden="true">
+              <span class="ev-day">05</span>
+              <span class="ev-mon">JUN</span>
+            </div>
+            <div class="event-info">
+              <p class="ev-title">Earth Embrace — World Environment Day</p>
+              <p class="ev-sub">Tree Plantation &middot; Clean-Up Drives &middot; Pan India</p>
+            </div>
+            <span class="ev-circle-icon" aria-hidden="true"></span>
+          </a>
+
+          <a class="event-row" href="https://www.ygpt.in/impact" role="listitem"
+             data-date="2026-08-01"
+             aria-label="Event: Share Some Love — Blood Donation Camp"
+             target="_blank" rel="noopener noreferrer">
+            <div class="event-date" aria-hidden="true">
+              <span class="ev-day">14</span>
+              <span class="ev-mon">APR</span>
+            </div>
+            <div class="event-info">
+              <p class="ev-title">Share Some Love — Blood Donation Camp</p>
+              <p class="ev-sub">Mumbai &middot; Delhi &middot; Hyderabad &middot; Community Care</p>
+            </div>
+            <span class="ev-circle-icon" aria-hidden="true"></span>
+          </a>
+
+          <div class="events-cta">
+            <a href="contact.html" class="btn-dark">Join a Club to Attend Events &rarr;</a>
+          </div>
+
+        </div>
+
+        <div class="events-cal" data-animate>
+          <img src="assets/images/event-highlight.webp"
+               alt="YGPT facilitator addressing hundreds of youth volunteers at a community gathering"
+               class="cal-box"
+               width="360" height="340"
+               loading="lazy"
+               decoding="async">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html">
+          <img src="assets/images/logo.png" alt="YGPT logo" class="footer-logo" width="140" height="40" loading="lazy" decoding="async">
+        </a>
+        <p class="footer-tagline">Youth &middot; Peace &middot; Transformation</p>
+        <p class="footer-powered">Powered by MaitriBodh Parivaar</p>
+        <a class="footer-contact" href="mailto:info@ygpt.in">info@ygpt.in</a>
+        <a class="footer-contact" href="tel:+919136992712">+91 91369 92712</a>
+      </div>
+      <nav class="footer-cols" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="https://www.ygpt.in/founder" target="_blank" rel="noopener noreferrer" aria-label="Our Founder (opens legacy site)">Our Founder</a></li>
+            <li><a href="index.html#initiatives">Initiatives</a></li>
+            <li><a href="events.html">Events</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Engage</h4>
+          <ul role="list">
+            <li><a href="contact.html">Join a Club</a></li>
+            <li><a href="https://www.ygpt.in/transformation" target="_blank" rel="noopener noreferrer" aria-label="Youth Transformation (opens legacy site)">Youth Transformation</a></li>
+            <li><a href="https://www.ygpt.in/impact" target="_blank" rel="noopener noreferrer" aria-label="Our Impact (opens legacy site)">Our Impact</a></li>
+            <li><a href="index.html#sponsors">Support Our Cause</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul role="list">
+            <li><a href="https://www.instagram.com/ygpt_official" target="_blank" rel="noopener noreferrer" aria-label="YGPT Instagram (opens external site)">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/ygpt" target="_blank" rel="noopener noreferrer" aria-label="YGPT LinkedIn (opens external site)">LinkedIn</a></li>
+            <li><a href="mailto:info@ygpt.in">Email Us</a></li>
+            <li><a href="https://wa.me/919136992712" target="_blank" rel="noopener noreferrer" aria-label="YGPT WhatsApp (opens external site)">WhatsApp</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2024&ndash;<span id="year"></span> YGPT &mdash; Youth For Global Peace &amp; Transformation</p>
+      <div class="footer-legal">
+        <a class="footer-policy-link" href="terms.html">Terms &amp; Conditions</a>
+        <a class="footer-policy-link" href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" type="button" id="back-to-top" aria-label="Back to top" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+<script src="js/main.js"></script>
+<script>
+/* Events page filter functionality */
+(function initEventsFilter() {
+  try {
+    const searchInput   = document.getElementById('events-search');
+    const filterLoc     = document.getElementById('filter-location');
+    const filterType    = document.getElementById('filter-type');
+    const filterDate    = document.getElementById('filter-date');
+    const clearBtn      = document.getElementById('events-clear-btn');
+    const noResults     = document.getElementById('events-no-results');
+    const moreFiltBtn   = document.getElementById('events-more-filters-btn');
+    const extraFilters  = document.getElementById('events-extra-filters');
+    const viewListBtn   = document.getElementById('view-list');
+    const viewCalBtn    = document.getElementById('view-calendar');
+    const tagChips      = document.querySelectorAll('.events-tag-chip');
+    const eventRows     = document.querySelectorAll('.event-row');
+
+    if (!searchInput || !eventRows.length) return;
+
+    let activeTag = null;
+
+    function getActiveFilters() {
+      return {
+        search:   searchInput.value.trim().toLowerCase(),
+        location: filterLoc ? filterLoc.value : '',
+        type:     filterType ? filterType.value : '',
+        date:     filterDate ? filterDate.value : '',
+        tag:      activeTag,
+      };
+    }
+
+    function applyFilters() {
+      const f = getActiveFilters();
+      const hasFilter = f.search || f.location || f.type || f.date || f.tag;
+
+      if (clearBtn) clearBtn.classList.toggle('visible', hasFilter);
+
+      let visible = 0;
+      eventRows.forEach(row => {
+        const title = (row.querySelector('.ev-title')?.textContent || '').toLowerCase();
+        const sub   = (row.querySelector('.ev-sub')?.textContent   || '').toLowerCase();
+        const full  = title + ' ' + sub;
+
+        let show = true;
+
+        if (f.search && !full.includes(f.search)) show = false;
+
+        if (f.location) {
+          const locationMap = {
+            'mumbai':    ['mumbai', 'navi mumbai', 'karjat'],
+            'pune':      ['pune', 'viit'],
+            'delhi':     ['delhi', 'jnu'],
+            'hyderabad': ['hyderabad'],
+            'punjab':    ['amritsar', 'ludhiana', 'chandigarh', 'punjab'],
+            'pan-india': ['pan india', 'pan-india'],
+            'online':    ['online', 'virtual'],
+          };
+          const locs = locationMap[f.location] || [];
+          if (locs.length && !locs.some(l => full.includes(l))) show = false;
+        }
+
+        if (f.type) {
+          const typeMap = {
+            'seminar':     ['seminar', 'bodh', 'youth development'],
+            'workshop':    ['workshop', 'bodh'],
+            'drive':       ['drive', 'donation', 'service', 'love', 'blood', 'food'],
+            'celebration': ['day', 'celebration', 'peace', 'iam'],
+            'yatra':       ['yatra', 'bypy'],
+          };
+          const types = typeMap[f.type] || [];
+          if (types.length && !types.some(t => full.includes(t))) show = false;
+        }
+
+        if (f.date) {
+          const dateStr  = row.getAttribute('data-date');
+          const eventDt  = dateStr ? new Date(dateStr) : null;
+          const now      = new Date();
+          if (eventDt) {
+            if (f.date === 'upcoming' && eventDt < now) show = false;
+            if (f.date === 'past'     && eventDt >= now) show = false;
+          }
+        }
+
+        if (f.tag) {
+          const tagMap = {
+            'mental-health': ['stress', 'anxiety', 'mental', 'emotional', 'transformation', 'inner'],
+            'fitness':       ['fitness', 'health', 'wellness'],
+            'networking':    ['networking', 'connect', 'community', 'club'],
+            'self-growth':   ['growth', 'purpose', 'potential', 'bodh', 'seminar'],
+            'action-events': ['drive', 'donation', 'service', 'blood', 'food', 'yatra'],
+            'yoga':          ['yoga'],
+            'youth-bodh':    ['bodh', 'youth bodh'],
+            'environment':   ['earth', 'tree', 'green', 'environment', 'planet'],
+          };
+          const tags = tagMap[f.tag] || [];
+          if (tags.length && !tags.some(t => full.includes(t))) show = false;
+        }
+
+        if (show) {
+          row.style.display = '';
+          visible++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      if (noResults) noResults.classList.toggle('visible', visible === 0);
+    }
+
+    /* Tag chip click */
+    tagChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const tag = chip.getAttribute('data-tag');
+        if (activeTag === tag) {
+          activeTag = null;
+          chip.classList.remove('active');
+        } else {
+          activeTag = tag;
+          tagChips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        }
+        applyFilters();
+      });
+    });
+
+    /* Search + dropdowns */
+    [searchInput, filterLoc, filterType, filterDate].forEach(el => {
+      if (el) el.addEventListener('input', applyFilters);
+      if (el) el.addEventListener('change', applyFilters);
+    });
+
+    /* Clear all */
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        if (filterLoc)  filterLoc.value  = '';
+        if (filterType) filterType.value = '';
+        if (filterDate) filterDate.value = '';
+        activeTag = null;
+        tagChips.forEach(c => c.classList.remove('active'));
+        applyFilters();
+      });
+    }
+
+    /* More Filters toggle */
+    if (moreFiltBtn && extraFilters) {
+      moreFiltBtn.addEventListener('click', () => {
+        const expanded = moreFiltBtn.getAttribute('aria-expanded') === 'true';
+        moreFiltBtn.setAttribute('aria-expanded', String(!expanded));
+        extraFilters.style.display = expanded ? 'none' : '';
+      });
+    }
+
+    /* View toggle — List vs Calendar (calendar is a future feature placeholder) */
+    if (viewListBtn && viewCalBtn) {
+      viewListBtn.addEventListener('click', () => {
+        viewListBtn.classList.add('active');
+        viewListBtn.setAttribute('aria-pressed', 'true');
+        viewCalBtn.classList.remove('active');
+        viewCalBtn.setAttribute('aria-pressed', 'false');
+      });
+      viewCalBtn.addEventListener('click', () => {
+        viewCalBtn.classList.add('active');
+        viewCalBtn.setAttribute('aria-pressed', 'true');
+        viewListBtn.classList.remove('active');
+        viewListBtn.setAttribute('aria-pressed', 'false');
+        alert('Calendar view coming soon! Use List view for now.');
+        viewListBtn.click();
+      });
+    }
+
+  } catch (err) {
+    console.warn('[YGPT] initEventsFilter failed:', err);
+  }
+})();
+</script>

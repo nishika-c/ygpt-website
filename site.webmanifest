@@ -1,0 +1,21 @@
+{
+  "name": "YGPT — Youth For Global Peace & Transformation",
+  "short_name": "YGPT",
+  "description": "Empowering youth through inner transformation, selfless service, and environmental action — for a Chinta Mukt Bharat.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#5BC4BF",
+  "icons": [
+    {
+      "src": "/assets/images/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/assets/images/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ]
+}
