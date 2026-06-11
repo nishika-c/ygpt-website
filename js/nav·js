@@ -1,0 +1,116 @@
+/* ================================================================
+   YGPT — js/nav.js
+   Injects the shared navbar into <div id="nav-root"></div>
+   on every page, sets the active nav link, then calls
+   window._initHamburger() and window._initGrowDropdown()
+   once the HTML is in the DOM.
+================================================================ */
+
+(function injectNav() {
+  'use strict';
+
+  const navHTML = `
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+
+  <a href="index.html" class="nav-logo-link">
+    <img src="assets/images/logo.png"
+         alt="YGPT — Youth For Global Peace &amp; Transformation"
+         class="nav-logo"
+         width="160" height="44"
+         loading="eager"
+         decoding="auto"
+         fetchpriority="high">
+  </a>
+
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#initiatives">Initiatives</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="clubs.html">Clubs</a></li>
+    <li class="nav-dropdown-wrap">
+      <button class="nav-dropdown-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-haspopup="true">
+        Grow <span class="nav-dropdown-indicator" aria-hidden="true">&#9660;</span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-label="Grow sub-menu">
+        <li role="none"><a href="resources.html" role="menuitem">Resources</a></li>
+        <li role="none"><a href="https://www.ygpt.in/transformation" role="menuitem" target="_blank" rel="noopener noreferrer">Learning</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
+    <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true" focusable="false">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+      </svg>
+    </button>
+    <a href="contact.html" class="nav-icon-btn" aria-label="Account" title="Account">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true" focusable="false">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+    </a>
+  </div>
+
+  <button class="nav-hamburger"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="nav-links">&#9776;</button>
+
+</nav>
+`;
+
+  /* ── 1. Insert into #nav-root if present, else prepend to body ── */
+  const root = document.getElementById('nav-root');
+  if (root) {
+    root.innerHTML = navHTML;
+  } else {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = navHTML;
+    document.body.insertBefore(wrapper.firstElementChild, document.body.firstChild);
+  }
+
+  /* ── 2. Set active link by matching pathname ── */
+  try {
+    const path     = window.location.pathname;
+    const filename = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(function(link) {
+      const href     = link.getAttribute('href') || '';
+      /* Strip hash and query so "index.html#initiatives" still matches index.html */
+      const linkFile = href.split('#')[0].split('?')[0];
+
+      if (!linkFile) return;
+
+      /* Exact filename match, or root path → index.html */
+      const isHome    = (filename === 'index.html' || filename === '') && (linkFile === 'index.html' || linkFile === '');
+      const isMatch   = linkFile === filename;
+
+      if (isHome || isMatch) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+  } catch (e) {
+    console.warn('[YGPT nav.js] Active link detection failed:', e);
+  }
+
+  /* ── 3. Re-init interactive behaviours now nav HTML is in the DOM ── */
+  if (typeof window._initHamburger === 'function')    window._initHamburger();
+  if (typeof window._initGrowDropdown === 'function') window._initGrowDropdown();
+
+})();

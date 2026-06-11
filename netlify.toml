@@ -1,0 +1,13 @@
+[build]
+  command   = "npm install && npm run build"
+  publish   = "."
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Redirect bare domain to www (or vice-versa) — adjust to match your DNS
+[[redirects]]
+  from   = "https://ygpt-website.netlify.app/*"
+  to     = "https://ygpt.in/:splat"
+  status = 301
+  force  = true

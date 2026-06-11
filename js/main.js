@@ -30,13 +30,20 @@ const qsa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
    01 — HAMBURGER MENU
    H02: Focus trap on open; Escape closes and restores focus.
    Uses transform/opacity/visibility — NO display manipulation.
+   TASK 1 FIX: converted from IIFE to window._initHamburger so
+   nav.js can call it after injecting nav HTML.
 ================================================================ */
-(function initHamburger() {
+window._initHamburger = function() {
   try {
-    const navbar    = qs('.navbar');
-    const hamburger = qs('.nav-hamburger');
-    const navList   = qs('.nav-links');
-    const navLinks  = qsa('.nav-links a');
+    /* Clone-and-replace the hamburger button to clear any existing listeners */
+    const oldBtn = qs('.nav-hamburger');
+    if (!oldBtn) return;
+    const hamburger = oldBtn.cloneNode(true);
+    oldBtn.parentNode.replaceChild(hamburger, oldBtn);
+
+    const navbar   = qs('.navbar');
+    const navList  = qs('.nav-links');
+    const navLinks = qsa('.nav-links a');
 
     if (!hamburger || !navList) return;
 
@@ -136,7 +143,67 @@ const qsa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   } catch (err) {
     console.warn('[YGPT] initHamburger failed:', err);
   }
-})();
+};
+window._initHamburger();
+
+
+/* ================================================================
+   01B — GROW DROPDOWN
+   TASK 1 FIX: converted from IIFE to window._initGrowDropdown so
+   nav.js can call it after injecting nav HTML.
+================================================================ */
+window._initGrowDropdown = function() {
+  try {
+    /* Clone-and-replace trigger buttons to clear any existing listeners */
+    qsa('.nav-dropdown-trigger').forEach(old => {
+      const fresh = old.cloneNode(true);
+      old.parentNode.replaceChild(fresh, old);
+    });
+
+    const triggers = qsa('.nav-dropdown-trigger');
+    if (!triggers.length) return;
+
+    triggers.forEach(trigger => {
+      const menu = trigger.nextElementSibling;
+      if (!menu || !menu.classList.contains('dropdown-menu')) return;
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        /* Close all dropdowns first */
+        qsa('.nav-dropdown-trigger').forEach(t => {
+          t.setAttribute('aria-expanded', 'false');
+          const m = t.nextElementSibling;
+          if (m) m.classList.remove('dropdown-open');
+        });
+        if (!isOpen) {
+          trigger.setAttribute('aria-expanded', 'true');
+          menu.classList.add('dropdown-open');
+        }
+      });
+
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          trigger.setAttribute('aria-expanded', 'false');
+          menu.classList.remove('dropdown-open');
+          trigger.focus();
+        }
+      });
+    });
+
+    document.addEventListener('click', () => {
+      qsa('.nav-dropdown-trigger').forEach(t => {
+        t.setAttribute('aria-expanded', 'false');
+        const m = t.nextElementSibling;
+        if (m) m.classList.remove('dropdown-open');
+      });
+    });
+
+  } catch (err) {
+    console.warn('[YGPT] initGrowDropdown failed:', err);
+  }
+};
+window._initGrowDropdown();
 
 
 /* ================================================================

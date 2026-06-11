@@ -500,9 +500,10 @@ img.nav-logo {
 }
 
 .stat-lbl {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--grey);
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .stat-divider {
@@ -1863,4 +1864,125 @@ img.cal-box {
 .india-map-img.img-missing {
   min-height: 200px;
   border-radius: var(--r);
+}
+
+/* ================================================================
+   22 — TESTIMONIAL LARGE QUOTE MARK (LOW-4)
+   Adds a decorative oversized opening quote mark to each card.
+   .testi-card already has position/overflow from section 12 above;
+   these rules extend it with the ::before decoration and ensure
+   all direct children stack above the pseudo-element.
+================================================================ */
+.testi-card {
+  position: relative;
+  overflow: visible;
+}
+
+.testi-card::before {
+  content: '\201C';
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 120px;
+  line-height: 1;
+  color: #5BC4BF;
+  opacity: 0.12;
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Lift all direct children above the quote-mark pseudo-element */
+.testi-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ================================================================
+   23 — TEAM CARD HOVER EFFECT + PHOTO POSITION (LOW-5)
+   .team-card and .team-photo rules already exist in section 11B.
+   These declarations extend/reinforce the transition spec and
+   ensure box-shadow eases in on hover alongside translateY.
+================================================================ */
+.team-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.team-photo {
+  object-position: center top;
+}
+
+
+/* ================================================================
+   24 — DARK MODE (LOW-6)
+   Respects OS-level dark mode preference.
+   Overrides key CSS variables and component backgrounds.
+   Uses .navbar and .footer (site class names) not bare nav/footer.
+================================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --white:      #0F1117;
+    --black:      #F0F0F0;
+    --bg-light:   #1A1D24;
+    --border:     rgba(255, 255, 255, 0.08);
+    --grey:       #9099B0;
+    --grey-light: #2E3140;
+  }
+
+  .navbar {
+    background: #0F1117;
+    border-bottom: 1px solid #2E3140;
+  }
+
+  .navbar--scrolled {
+    background: rgba(15, 17, 23, 0.88);
+  }
+
+  .footer {
+    background: #0A0C10;
+  }
+
+  .testi-card {
+    background: #1A1D24;
+    border: 1px solid #2E3140;
+  }
+
+  .init-card {
+    background: #1A1D24;
+    border: 1px solid #2E3140;
+  }
+
+  .sponsor-card {
+    background: #1A1D24;
+    border: 1px solid #2E3140;
+  }
+
+  .club-card {
+    background: #1A1D24;
+    border: 1px solid #2E3140;
+  }
+
+  .event-row {
+    border-bottom: 1px solid #2E3140;
+  }
+
+  .dropdown-menu {
+    background: #1A1D24;
+    border: 1px solid #2E3140;
+  }
+
+  .value-card {
+    background: #1A1D24;
+    border: 1px solid #2E3140;
+  }
+
+  .team-card {
+    background: #1A1D24;
+  }
 }

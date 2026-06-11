@@ -1,0 +1,278 @@
+/* ================================================================
+   YGPT — css/pages/about.css
+   Styles for all new sections added to about.html:
+     — Vision Statement   (.about-vision)
+     — Mission/Philosophy (.mission-philosophy-grid)
+     — Journey Timeline   (.about-journey, .timeline)
+     — Team fallbacks     (.team-initials-fallback)
+     — Founder fallback   (.founder-initials-fallback)
+================================================================ */
+
+
+/* ================================================================
+   01 — VISION STATEMENT SECTION
+================================================================ */
+.about-vision {
+  width: 100%;
+  padding: 80px 0;
+  background: rgba(91, 196, 191, 0.08);
+}
+
+.vision-block {
+  border-left: 4px solid #5BC4BF;
+  padding: 24px 32px;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+.vision-block h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 64px);
+  letter-spacing: 2px;
+  color: var(--black, #414042);
+  line-height: 1.05;
+  margin-bottom: 12px;
+  font-style: normal;
+}
+
+.vision-tagline {
+  font-size: 14px;
+  color: #5BC4BF;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+/* ================================================================
+   02 — MISSION / PHILOSOPHY GRID
+================================================================ */
+.mission-philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 40px;
+  background: rgba(91, 196, 191, 0.06);
+  border-left: 4px solid #5BC4BF;
+  border-radius: 0 8px 8px 0;
+  padding: 40px;
+}
+
+.mission-block h3,
+.philosophy-block h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: #5BC4BF;
+  margin-bottom: 12px;
+}
+
+.mission-block p,
+.philosophy-block p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--grey, #767676);
+}
+
+@media (max-width: 768px) {
+  .mission-philosophy-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 24px;
+  }
+}
+
+
+/* ================================================================
+   03 — JOURNEY TIMELINE SECTION
+================================================================ */
+.about-journey {
+  padding: 80px 0;
+  background: var(--bg-light, #F3F4F6);
+}
+
+.about-journey h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 4vw, 52px);
+  letter-spacing: 2px;
+  color: var(--black, #414042);
+  margin-bottom: 48px;
+  line-height: 1;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Vertical centre line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #5BC4BF;
+  opacity: 0.3;
+  transform: translateX(-50%);
+}
+
+/* Default: odd items sit on the LEFT half (flush right toward line) */
+.timeline-item {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 52px;
+  width: 50%;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+/* Even items sit on the RIGHT half (flush left toward line) */
+.timeline-item:nth-child(even) {
+  justify-content: flex-start;
+  padding-right: 0;
+  padding-left: 52px;
+  align-self: flex-end;
+  margin-left: 50%;
+}
+
+/* Dot on the line */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  background: #5BC4BF;
+  border-radius: 50%;
+  border: 2px solid var(--white, #fff);
+  box-shadow: 0 0 0 2px #5BC4BF;
+}
+
+.timeline-item:nth-child(even)::after {
+  right: auto;
+  left: -6px;
+}
+
+.timeline-year {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  color: #5BC4BF;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.timeline-content {
+  background: var(--white, #ffffff);
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 20px 24px;
+  max-width: 320px;
+}
+
+.timeline-content h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: var(--black, #414042);
+  margin-bottom: 6px;
+}
+
+.timeline-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--grey, #767676);
+}
+
+/* ── Mobile timeline: full width, left-aligned, line on left ── */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+    transform: none;
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(even) {
+    width: 100%;
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-left: 52px;
+    margin-left: 0;
+    align-self: auto;
+  }
+
+  .timeline-item::after,
+  .timeline-item:nth-child(even)::after {
+    left: 14px;
+    right: auto;
+  }
+
+  .timeline-content {
+    max-width: 100%;
+  }
+}
+
+
+/* ================================================================
+   04 — TEAM INITIALS FALLBACK
+   Displayed via JS: onerror sets img display:none and shows this
+================================================================ */
+.team-initials-fallback {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #2E9E99;
+  color: #ffffff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  letter-spacing: 1px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+
+/* ================================================================
+   05 — FOUNDER INITIALS FALLBACK
+================================================================ */
+.founder-initials-fallback {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: #2E9E99;
+  color: #ffffff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  letter-spacing: 1px;
+  line-height: 1;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.coming-soon-label {
+  display: block;
+  font-size: 12px;
+  color: #9099B0;
+  margin-top: 8px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}

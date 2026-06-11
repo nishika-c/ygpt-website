@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /assets/favicon/
+Disallow: /404.html
 
 Sitemap: https://ygpt.in/sitemap.xml

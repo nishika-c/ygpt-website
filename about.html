@@ -19,6 +19,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/pages/about.css">
   <style>
     .page-hero {
       background-color: var(--bg-light);
@@ -214,6 +215,67 @@
     </div>
   </section>
 
+  <!-- TASK 2: Vision Statement — insert before values section -->
+  <section class="about-vision" aria-labelledby="vision-heading">
+    <div class="container">
+      <div class="vision-block">
+        <p class="section-tag">Our Vision</p>
+        <h2 id="vision-heading">One World, One Family and One Truth.</h2>
+        <p class="vision-tagline">The vision of Maitreya Dadashreeji that YGPT is built on.</p>
+      </div>
+      <div class="mission-philosophy-grid">
+        <div class="mission-block">
+          <h3>Mission</h3>
+          <p>Our aim is to build on the emotional intelligence and resilience of the youth through transformative youth development sessions, selfless acts of service, and green environmental initiatives. YGPT provides a welcoming, judgement-free, friendly space filled with positivity, genuine connections, and support. Together, we take on social projects, climate actions, and community service for a peaceful and united world.</p>
+        </div>
+        <div class="philosophy-block">
+          <h3>Philosophy</h3>
+          <p>True and lasting transformation begins within. When youth discover their inner strength, purpose, and connection to humanity, they naturally become agents of positive change — for their families, their communities, and the world.</p>
+          <!-- TODO: Ask Reva ji if there is a more specific Philosophy statement to add here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TASK 2: Journey / Timeline — insert after Vision section -->
+  <!-- TODO: Ask Reva ji for exact years of first national event and city expansion dates -->
+  <section class="about-journey" aria-labelledby="journey-heading">
+    <div class="container">
+      <p class="section-tag">Our Journey</p>
+      <h2 id="journey-heading">How We Grew</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2013</div>
+          <div class="timeline-content">
+            <h3>YGPT Founded</h3>
+            <p>Started as "Youth Force for Better India" with just 11 volunteers under the guidance of Maitreya Dadashreeji.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2013–</div>
+          <div class="timeline-content">
+            <h3>Youth Seminars Across India</h3>
+            <p>Transformative youth development seminars conducted continuously across colleges and institutes in India.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Ongoing</div>
+          <div class="timeline-content">
+            <h3>12+ Cities Worldwide</h3>
+            <p>Expanded to 12+ cities across India and internationally — including London and New York.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Today</div>
+          <div class="timeline-content">
+            <h3>1 Lakh+ Lives Impacted</h3>
+            <p>Over 1 Lakh lives touched, 8,000+ youth in seminars, 16,000+ women supported across India.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="values-section" aria-labelledby="values-heading">
     <div class="container">
       <h2 id="values-heading" data-animate>Our Core Values</h2>
@@ -254,6 +316,7 @@
   </section>
 
   <!-- ABOUT-01: Team section — Uurmi, Rigved, Jasmine, Sneha -->
+  <!-- TASK 2 + TASK 3: initials fallbacks for Rigved/Jasmine; Sneha gets real .jpg -->
   <section class="team team--about" aria-labelledby="team-about-heading">
     <div class="container">
       <div class="section-hdr">
@@ -261,13 +324,16 @@
       </div>
       <div class="team-grid" role="list" data-animate-stagger aria-label="YGPT team members">
 
+        <!-- Uurmi Kaur — real image at assets/images/uurmi.jpg per spec -->
         <article class="team-card" role="listitem" data-animate>
           <div class="team-photo-wrap">
-            <img src="assets/images/team-uurmi.webp"
+            <img src="assets/images/uurmi.jpg"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                  alt="Uurmi Kaur — Pan India Lead, Celebrity Make-Up Artist"
                  class="team-photo"
                  width="280" height="320"
                  loading="lazy" decoding="async">
+            <div class="team-initials-fallback">U</div>
           </div>
           <div class="team-info">
             <p class="team-name">Uurmi Kaur</p>
@@ -276,13 +342,16 @@
           </div>
         </article>
 
+        <!-- Rigved Sawant — initials fallback R -->
         <article class="team-card" role="listitem" data-animate>
           <div class="team-photo-wrap">
             <img src="assets/images/team-rigved.webp"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                  alt="Rigved Sawant — Head of Earth Embrace, Entrepreneur"
                  class="team-photo"
                  width="280" height="320"
                  loading="lazy" decoding="async">
+            <div class="team-initials-fallback">R</div>
           </div>
           <div class="team-info">
             <p class="team-name">Rigved Sawant</p>
@@ -291,13 +360,16 @@
           </div>
         </article>
 
+        <!-- Jasmine Pahwa — initials fallback J -->
         <article class="team-card" role="listitem" data-animate>
           <div class="team-photo-wrap">
             <img src="assets/images/team-jasmine.webp"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                  alt="Jasmine Pahwa — Youth Development Lead, Founder of Do Good Foundation"
                  class="team-photo"
                  width="280" height="320"
                  loading="lazy" decoding="async">
+            <div class="team-initials-fallback">J</div>
           </div>
           <div class="team-info">
             <p class="team-name">Jasmine Pahwa</p>
@@ -306,9 +378,10 @@
           </div>
         </article>
 
+        <!-- TASK 3: Sneha Laghate — real .jpg, no onerror, no fallback div -->
         <article class="team-card" role="listitem" data-animate>
           <div class="team-photo-wrap">
-            <img src="assets/images/team-sneha.webp"
+            <img src="assets/images/team-sneha.jpg"
                  alt="Sneha Laghate — Outreach Coordinator, CSR Professional"
                  class="team-photo"
                  width="280" height="320"
@@ -329,15 +402,19 @@
     <div class="container">
       <div class="founder-inner" data-animate>
 
-        <!-- ABOUT-02: Founder portrait image placeholder -->
+        <!-- ABOUT-02: Founder portrait — TASK 2: initials fallback added -->
         <div class="founder-portrait">
           <img src="assets/images/founder-maitreya.webp"
                alt="Maitreya Dadashreeji — Enabling the Youth; Transforming the World!"
                class="founder-img"
                width="400" height="480"
-               onerror="this.style.background='var(--grey-light)';this.removeAttribute('onerror')"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
                loading="lazy"
                decoding="async">
+          <div class="founder-initials-fallback">
+            <span class="initials">MD</span>
+            <span class="coming-soon-label">Photo coming soon</span>
+          </div>
         </div>
 
         <div class="founder-text">
@@ -374,14 +451,14 @@
             <span class="metric-lbl">Lives Positively Impacted</span>
           </div>
           <div class="metric-item" role="listitem" data-animate>
-            <span class="metric-num" data-count="16000" aria-label="16 thousand plus women supported">16,000+</span>
-            <div class="metric-line" aria-hidden="true"></div>
-            <span class="metric-lbl">Women Supported</span>
-          </div>
-          <div class="metric-item" role="listitem" data-animate>
             <span class="metric-num" data-count="8000" aria-label="8000 plus youth in seminars">8,000+</span>
             <div class="metric-line" aria-hidden="true"></div>
             <span class="metric-lbl">Youth in Seminars</span>
+          </div>
+          <div class="metric-item" role="listitem" data-animate>
+            <span class="metric-num" data-count="16000" aria-label="16 thousand plus women supported">16,000+</span>
+            <div class="metric-line" aria-hidden="true"></div>
+            <span class="metric-lbl">Women Supported</span>
           </div>
         </div>
       </div>

@@ -1,0 +1,14 @@
+{
+  "name": "ygpt-website",
+  "version": "1.0.0",
+  "description": "YGPT — Youth For Global Peace & Transformation website",
+  "scripts": {
+    "build": "mkdir -p dist && npx terser js/main.js -o dist/main.min.js --compress --mangle && npx terser js/nav.js -o dist/nav.min.js --compress --mangle && npx terser js/footer.js -o dist/footer.min.js --compress --mangle && npx cleancss -o dist/style.min.css css/style.css",
+    "dev": "npx serve ."
+  },
+  "devDependencies": {
+    "terser": "^5.31.0",
+    "clean-css-cli": "^5.6.3",
+    "serve": "^14.2.3"
+  }
+}
