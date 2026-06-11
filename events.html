@@ -11,6 +11,18 @@
   <link rel="icon"             href="assets/images/icon.svg"    type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
   <link rel="manifest"         href="/site.webmanifest">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://ygpt.in/events.html">
+  <meta property="og:title"       content="Events — YGPT">
+  <meta property="og:description" content="Explore upcoming and past YGPT events — youth seminars, International Youth Day, #IamPEACE, Bharat Yuva Parivartan Yatra, and more across India.">
+  <meta property="og:image"       content="https://ygpt.in/assets/images/logo.png">
+  <meta property="og:site_name"   content="YGPT">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Events — YGPT">
+  <meta name="twitter:image"      content="https://ygpt.in/assets/images/logo.png">
+  <!-- For production: swap to dist/ versions -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +31,17 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mobile.css">
+  <!-- For production: swap to dist/ versions -->
+  <!-- Google Analytics 4 — replace G-XXXXXXXXXX with real Measurement ID to activate -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
   <style>
     .page-hero {
       background-color: var(--bg-light);
@@ -751,7 +774,9 @@
         viewCalBtn.setAttribute('aria-pressed', 'true');
         viewListBtn.classList.remove('active');
         viewListBtn.setAttribute('aria-pressed', 'false');
-        alert('Calendar view coming soon! Use List view for now.');
+        console.info('[YGPT] Calendar view coming soon.');
+        viewListBtn.setAttribute('aria-pressed', 'true');
+        viewCalBtn.setAttribute('aria-pressed', 'false');
         viewListBtn.click();
       });
     }

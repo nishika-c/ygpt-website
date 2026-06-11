@@ -1,0 +1,22 @@
+/*
+ * TASK 5 — Stats label typography fix
+ * Location in css/style.css: find .metric-lbl rule in the METRICS section
+ *
+ * BEFORE (original):
+ *   .metric-lbl {
+ *     font-size: 12px;
+ *     color: var(--grey);
+ *     line-height: 1.4;
+ *     text-align: center;
+ *   }
+ *
+ * AFTER (apply this):
+ */
+.metric-lbl {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey);
+  line-height: 1.4;
+  text-align: center;
+}

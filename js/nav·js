@@ -1,116 +1,239 @@
-/* ================================================================
-   YGPT — js/nav.js
-   Injects the shared navbar into <div id="nav-root"></div>
-   on every page, sets the active nav link, then calls
-   window._initHamburger() and window._initGrowDropdown()
-   once the HTML is in the DOM.
-================================================================ */
-
-(function injectNav() {
+/**
+ * nav.js — YGPT Navigation
+ * Injects consistent navbar HTML across all pages and handles:
+ *  - Active state detection (homepage + inner pages)
+ *  - Hamburger menu toggle
+ *  - Dropdown for "Grow" submenu
+ *  - Sticky scroll shadow
+ *  - Back-to-top button
+ */
+(function () {
   'use strict';
 
-  const navHTML = `
-<nav class="navbar" id="navbar" aria-label="Main navigation">
+  /* ─── 1. DETERMINE ACTIVE PAGE ─────────────────────────────────────── */
+  const path = window.location.pathname;
+  const page = path.split('/').pop() || 'index.html'; // '' → 'index.html' for root
 
-  <a href="index.html" class="nav-logo-link">
-    <img src="assets/images/logo.png"
-         alt="YGPT — Youth For Global Peace &amp; Transformation"
-         class="nav-logo"
-         width="160" height="44"
-         loading="eager"
-         decoding="auto"
-         fetchpriority="high">
-  </a>
-
-  <ul class="nav-links" id="nav-links" role="list">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="index.html#initiatives">Initiatives</a></li>
-    <li><a href="events.html">Events</a></li>
-    <li><a href="clubs.html">Clubs</a></li>
-    <li class="nav-dropdown-wrap">
-      <button class="nav-dropdown-trigger"
-              type="button"
-              aria-expanded="false"
-              aria-haspopup="true">
-        Grow <span class="nav-dropdown-indicator" aria-hidden="true">&#9660;</span>
-      </button>
-      <ul class="dropdown-menu" role="menu" aria-label="Grow sub-menu">
-        <li role="none"><a href="resources.html" role="menuitem">Resources</a></li>
-        <li role="none"><a href="https://www.ygpt.in/transformation" role="menuitem" target="_blank" rel="noopener noreferrer">Learning</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <div class="nav-actions">
-    <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
-    <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round"
-           aria-hidden="true" focusable="false">
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-      </svg>
-    </button>
-    <a href="contact.html" class="nav-icon-btn" aria-label="Account" title="Account">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-           fill="none" stroke="currentColor" stroke-width="2"
-           stroke-linecap="round" stroke-linejoin="round"
-           aria-hidden="true" focusable="false">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-        <circle cx="12" cy="7" r="4"></circle>
-      </svg>
-    </a>
-  </div>
-
-  <button class="nav-hamburger"
-          type="button"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="nav-links">&#9776;</button>
-
-</nav>
-`;
-
-  /* ── 1. Insert into #nav-root if present, else prepend to body ── */
-  const root = document.getElementById('nav-root');
-  if (root) {
-    root.innerHTML = navHTML;
-  } else {
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = navHTML;
-    document.body.insertBefore(wrapper.firstElementChild, document.body.firstChild);
+  function isActive(href) {
+    if (!href) return false;
+    // Homepage: active on index.html OR bare /
+    if (href === 'index.html') {
+      return page === 'index.html' || page === '' || path === '/';
+    }
+    // Anchor-only links (e.g. #initiatives) — active only on homepage
+    if (href.startsWith('#')) {
+      return page === 'index.html' || page === '' || path === '/';
+    }
+    return page === href;
   }
 
-  /* ── 2. Set active link by matching pathname ── */
-  try {
-    const path     = window.location.pathname;
-    const filename = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+  /* ─── 2. NAV DATA ───────────────────────────────────────────────────── */
+  // Structure matches wireframe: About | Initiatives | Events | Clubs | Contact | Grow ▼
+  const navItems = [
+    { label: 'Home',        href: 'index.html' },
+    { label: 'About',       href: 'about.html' },
+    { label: 'Initiatives', href: '#initiatives' },
+    { label: 'Events',      href: 'events.html' },
+    { label: 'Clubs',       href: 'clubs.html' },
+    { label: 'Contact',     href: 'contact.html' },
+    {
+      label: 'Grow',
+      href: '#sponsors',
+      dropdown: [
+        { label: 'Resources',              href: 'resources.html' },
+        { label: 'Learning (Coming Soon)', href: '#', comingSoon: true },
+      ],
+    },
+  ];
 
-    const links = document.querySelectorAll('.nav-links a');
-    links.forEach(function(link) {
-      const href     = link.getAttribute('href') || '';
-      /* Strip hash and query so "index.html#initiatives" still matches index.html */
-      const linkFile = href.split('#')[0].split('?')[0];
+  /* ─── 3. BUILD NAV HTML ─────────────────────────────────────────────── */
+  function buildNavLinks() {
+    return navItems.map(item => {
+      const active = isActive(item.href) ? ' class="active" aria-current="page"' : '';
 
-      if (!linkFile) return;
+      if (item.dropdown) {
+        // Dropdown parent
+        const ddItems = item.dropdown.map(sub => {
+          const cs = sub.comingSoon
+            ? ' <span class="nav-badge" aria-label="Coming soon">Soon</span>'
+            : '';
+          const disabled = sub.comingSoon ? ' aria-disabled="true" tabindex="-1"' : '';
+          return `<li><a href="${sub.href}"${disabled}>${sub.label}${cs}</a></li>`;
+        }).join('');
 
-      /* Exact filename match, or root path → index.html */
-      const isHome    = (filename === 'index.html' || filename === '') && (linkFile === 'index.html' || linkFile === '');
-      const isMatch   = linkFile === filename;
-
-      if (isHome || isMatch) {
-        link.classList.add('active');
-        link.setAttribute('aria-current', 'page');
+        return `
+        <li class="nav-has-dropdown">
+          <a href="${item.href}"${active}>
+            ${item.label} <span class="nav-dropdown-indicator" aria-hidden="true">&#9660;</span>
+          </a>
+          <ul class="nav-dropdown" role="list">
+            ${ddItems}
+          </ul>
+        </li>`;
       }
-    });
-  } catch (e) {
-    console.warn('[YGPT nav.js] Active link detection failed:', e);
+
+      return `<li><a href="${item.href}"${active}>${item.label}</a></li>`;
+    }).join('');
   }
 
-  /* ── 3. Re-init interactive behaviours now nav HTML is in the DOM ── */
-  if (typeof window._initHamburger === 'function')    window._initHamburger();
-  if (typeof window._initGrowDropdown === 'function') window._initGrowDropdown();
+  /* ─── 4. INJECT NAVBAR ──────────────────────────────────────────────── */
+  function injectNav() {
+    const existing = document.getElementById('navbar');
+    if (!existing) return; // nav already static-coded on this page — skip
+
+    // If nav already has child elements (static HTML page), just enhance it
+    if (existing.children.length > 1) {
+      enhanceNav(existing);
+      return;
+    }
+
+    // Inject nav HTML (used when nav placeholder div is empty)
+    existing.innerHTML = `
+      <a href="index.html" class="nav-brand">
+        <img src="assets/images/logo.png"
+             alt="YGPT — Youth For Global Peace &amp; Transformation"
+             class="nav-logo"
+             width="160" height="44"
+             loading="eager"
+             decoding="auto"
+             fetchpriority="high">
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        ${buildNavLinks()}
+      </ul>
+
+      <div class="nav-actions">
+        <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
+        <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+        </button>
+        <a href="contact.html" class="nav-icon-btn" aria-label="Join YGPT — member profile" title="Join / Profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      </div>
+
+      <button class="nav-hamburger"
+              type="button"
+              aria-label="Open navigation menu"
+              aria-expanded="false"
+              aria-controls="nav-links">&#9776;</button>
+    `;
+
+    enhanceNav(existing);
+  }
+
+  /* ─── 5. ENHANCE: HAMBURGER + DROPDOWN + SCROLL SHADOW ─────────────── */
+  function enhanceNav(nav) {
+    const hamburger = nav.querySelector('.nav-hamburger');
+    const navLinks  = nav.querySelector('#nav-links') || nav.querySelector('.nav-links');
+
+    /* Hamburger toggle */
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('nav-open');
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+        hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+        hamburger.innerHTML = isOpen ? '&times;' : '&#9776;';
+      });
+
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && navLinks.classList.contains('nav-open')) {
+          navLinks.classList.remove('nav-open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.setAttribute('aria-label', 'Open navigation menu');
+          hamburger.innerHTML = '&#9776;';
+        }
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
+          navLinks.classList.remove('nav-open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.setAttribute('aria-label', 'Open navigation menu');
+          hamburger.innerHTML = '&#9776;';
+          hamburger.focus();
+        }
+      });
+    }
+
+    /* Dropdown hover + keyboard for .nav-has-dropdown */
+    nav.querySelectorAll('.nav-has-dropdown').forEach(item => {
+      const toggle = item.querySelector('a');
+      const dropdown = item.querySelector('.nav-dropdown');
+      if (!toggle || !dropdown) return;
+
+      // Keyboard: Enter/Space toggles dropdown
+      toggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const open = item.classList.toggle('dropdown-open');
+          toggle.setAttribute('aria-expanded', String(open));
+        }
+      });
+
+      // Close dropdown on outside click
+      document.addEventListener('click', (e) => {
+        if (!item.contains(e.target)) {
+          item.classList.remove('dropdown-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    /* Sticky scroll shadow */
+    const onScroll = () => {
+      nav.classList.toggle('navbar--scrolled', window.scrollY > 10);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run once on load
+  }
+
+  /* ─── 6. BACK-TO-TOP BUTTON ─────────────────────────────────────────── */
+  function initBackToTop() {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+
+    window.addEventListener('scroll', () => {
+      const show = window.scrollY > 400;
+      btn.setAttribute('aria-hidden', String(!show));
+      btn.classList.toggle('visible', show);
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ─── 7. DYNAMIC COPYRIGHT YEAR ────────────────────────────────────── */
+  function setYear() {
+    const el = document.getElementById('year');
+    if (el) el.textContent = new Date().getFullYear();
+  }
+
+  /* ─── 8. INIT ────────────────────────────────────────────────────────── */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      injectNav();
+      initBackToTop();
+      setYear();
+    });
+  } else {
+    injectNav();
+    initBackToTop();
+    setYear();
+  }
 
 })();

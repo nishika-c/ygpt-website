@@ -5,7 +5,7 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# Redirect bare domain to www (or vice-versa) — adjust to match your DNS
+# Redirect Netlify preview URL to production domain
 [[redirects]]
   from   = "https://ygpt-website.netlify.app/*"
   to     = "https://ygpt.in/:splat"
