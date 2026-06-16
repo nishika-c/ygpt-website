@@ -12,15 +12,13 @@
 
   /* ─── 1. DETERMINE ACTIVE PAGE ─────────────────────────────────────── */
   const path = window.location.pathname;
-  const page = path.split('/').pop() || 'index.html'; // '' → 'index.html' for root
+  const page = path.split('/').pop() || 'index.html';
 
   function isActive(href) {
     if (!href) return false;
-    // Homepage: active on index.html OR bare /
     if (href === 'index.html') {
       return page === 'index.html' || page === '' || path === '/';
     }
-    // Anchor-only links (e.g. #initiatives) — active only on homepage
     if (href.startsWith('#')) {
       return page === 'index.html' || page === '' || path === '/';
     }
@@ -28,7 +26,6 @@
   }
 
   /* ─── 2. NAV DATA ───────────────────────────────────────────────────── */
-  // Structure matches wireframe: About | Initiatives | Events | Clubs | Contact | Grow ▼
   const navItems = [
     { label: 'Home',        href: 'index.html' },
     { label: 'About',       href: 'about.html' },
@@ -52,7 +49,6 @@
       const active = isActive(item.href) ? ' class="active" aria-current="page"' : '';
 
       if (item.dropdown) {
-        // Dropdown parent
         const ddItems = item.dropdown.map(sub => {
           const cs = sub.comingSoon
             ? ' <span class="nav-badge" aria-label="Coming soon">Soon</span>'
@@ -79,15 +75,15 @@
   /* ─── 4. INJECT NAVBAR ──────────────────────────────────────────────── */
   function injectNav() {
     const existing = document.getElementById('navbar');
-    if (!existing) return; // nav already static-coded on this page — skip
+    if (!existing) return;
 
-    // If nav already has child elements (static HTML page), just enhance it
     if (existing.children.length > 1) {
       enhanceNav(existing);
+      if (typeof window._initHamburger    === 'function') window._initHamburger();
+      if (typeof window._initGrowDropdown === 'function') window._initGrowDropdown();
       return;
     }
 
-    // Inject nav HTML (used when nav placeholder div is empty)
     existing.innerHTML = `
       <a href="index.html" class="nav-brand">
         <img src="assets/images/logo.png"
@@ -131,6 +127,10 @@
     `;
 
     enhanceNav(existing);
+
+    /* TASK 1 FIX: re-init main.js hamburger + dropdown after nav injection */
+    if (typeof window._initHamburger    === 'function') window._initHamburger();
+    if (typeof window._initGrowDropdown === 'function') window._initGrowDropdown();
   }
 
   /* ─── 5. ENHANCE: HAMBURGER + DROPDOWN + SCROLL SHADOW ─────────────── */
@@ -138,7 +138,6 @@
     const hamburger = nav.querySelector('.nav-hamburger');
     const navLinks  = nav.querySelector('#nav-links') || nav.querySelector('.nav-links');
 
-    /* Hamburger toggle */
     if (hamburger && navLinks) {
       hamburger.addEventListener('click', () => {
         const isOpen = navLinks.classList.toggle('nav-open');
@@ -147,7 +146,6 @@
         hamburger.innerHTML = isOpen ? '&times;' : '&#9776;';
       });
 
-      // Close on outside click
       document.addEventListener('click', (e) => {
         if (!nav.contains(e.target) && navLinks.classList.contains('nav-open')) {
           navLinks.classList.remove('nav-open');
@@ -157,7 +155,6 @@
         }
       });
 
-      // Close on Escape
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && navLinks.classList.contains('nav-open')) {
           navLinks.classList.remove('nav-open');
@@ -169,13 +166,11 @@
       });
     }
 
-    /* Dropdown hover + keyboard for .nav-has-dropdown */
     nav.querySelectorAll('.nav-has-dropdown').forEach(item => {
-      const toggle = item.querySelector('a');
+      const toggle   = item.querySelector('a');
       const dropdown = item.querySelector('.nav-dropdown');
       if (!toggle || !dropdown) return;
 
-      // Keyboard: Enter/Space toggles dropdown
       toggle.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -184,7 +179,6 @@
         }
       });
 
-      // Close dropdown on outside click
       document.addEventListener('click', (e) => {
         if (!item.contains(e.target)) {
           item.classList.remove('dropdown-open');
@@ -193,12 +187,11 @@
       });
     });
 
-    /* Sticky scroll shadow */
     const onScroll = () => {
       nav.classList.toggle('navbar--scrolled', window.scrollY > 10);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // run once on load
+    onScroll();
   }
 
   /* ─── 6. BACK-TO-TOP BUTTON ─────────────────────────────────────────── */

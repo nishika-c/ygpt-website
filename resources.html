@@ -7,10 +7,10 @@
   <meta name="description" content="Access YGPT resources — downloadable guides, PDFs, toolkits, club-starter forms, and templates to help you run events and build communities.">
   <meta name="theme-color" content="#5BC4BF">
   <link rel="canonical" href="https://ygpt.in/resources.html">
-  <link rel="icon"             href="assets/images/favicon.ico" sizes="any">
-  <link rel="icon"             href="assets/images/icon.svg"    type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-  <link rel="manifest"         href="/site.webmanifest">
+  <link rel="icon"             href="assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon"             href="assets/favicon/icon.svg"    type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest"         href="assets/favicon/site.webmanifest">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -216,8 +216,15 @@
     <li><a href="index.html#initiatives">Initiatives</a></li>
     <li><a href="events.html">Events</a></li>
     <li><a href="clubs.html">Clubs</a></li>
-    <li><a href="index.html#sponsors">Grow <span class="nav-dropdown-indicator" aria-hidden="true">&#9660;</span></a></li>
-  </ul>
+    <li class="nav-has-dropdown">
+          <a href="index.html#sponsors">
+            Grow <span class="nav-dropdown-indicator" aria-hidden="true">&#9660;</span>
+          </a>
+          <ul class="nav-dropdown" role="list">
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="#" aria-disabled="true" tabindex="-1">Learning <span class="nav-badge" aria-label="Coming soon">Soon</span></a></li>
+          </ul>
+        </li></ul>
   <div class="nav-actions">
     <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
     <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications">
