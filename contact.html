@@ -154,7 +154,7 @@
     .form-textarea:focus { border-color: var(--teal); }
     .form-input[aria-invalid="true"],
     .form-select[aria-invalid="true"],
-    .form-textarea[aria-invalid="true"] { border-color: var(--orange); }
+    .form-textarea[aria-invalid="true"] { border-color: var(--red); }
     .form-textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
     .form-select { appearance: none; cursor: pointer; }
     .form-feedback {
@@ -164,7 +164,7 @@
     }
     .form-feedback:empty { display: none; }
     .form-feedback--success { color: var(--green); }
-    .form-feedback--error   { color: var(--orange); }
+    .form-feedback--error   { color: var(--red); }
     .form-submit { margin-top: var(--sp-3); width: 100%; justify-content: center; }
     /* CON-01: Purpose / intent selector styles */
     .form-purpose-fieldset {
@@ -246,14 +246,15 @@
     <li><a href="events.html">Events</a></li>
     <li><a href="clubs.html">Clubs</a></li>
     <li class="nav-has-dropdown">
-          <a href="index.html#sponsors">
+          <a href="index.html#sponsors" aria-expanded="false">
             Grow <span class="nav-dropdown-indicator" aria-hidden="true">&#9660;</span>
           </a>
           <ul class="nav-dropdown" role="list">
             <li><a href="resources.html">Resources</a></li>
             <li><a href="#" aria-disabled="true" tabindex="-1">Learning <span class="nav-badge" aria-label="Coming soon">Soon</span></a></li>
           </ul>
-        </li></ul>
+        </li>
+  </ul>
   <div class="nav-actions">
     <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
     <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications">
