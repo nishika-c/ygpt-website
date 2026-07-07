@@ -1604,6 +1604,17 @@ img.card-img.card-img--tall {
   height: 280px;
 }
 
+/* Featured card: image grows to fill space, card-body stays tight — no empty gap */
+.init-card--featured img.card-img {
+  flex: 1;
+  height: auto;
+  min-height: 280px;
+  object-fit: cover;
+}
+.init-card--featured .card-body {
+  flex: 0 0 auto;
+}
+
 img.cal-box {
   width: 100%;
   height: 340px;
