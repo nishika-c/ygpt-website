@@ -103,6 +103,7 @@ button {
   /* M05: darkened from #919090 (3.5:1) to #767676 (4.54:1 on white) — WCAG AA */
   --grey:        #767676;
   --grey-light:  #D9D9D9;
+  --red:         #E53E3E;
   --border:      rgba(0, 0, 0, 0.08);
   --white:       #FFFFFF;
   --bg-light:    #F3F4F6;
@@ -1564,11 +1565,10 @@ img.footer-logo {
 ================================================================ */
 
 picture.hero-right {
-  width: 50%;
+  flex: 1;
   overflow: hidden;
   display: block;
   min-height: 520px;
-  flex-shrink: 0;
 }
 
 .hero-img {

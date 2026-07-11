@@ -14,9 +14,7 @@ const CONFIG = {
   FORMSPREE_URL:         'https://formspree.io/f/xpqeplwy',
 
 
-  // Contact page form — separate Formspree form, separate ID
-  // IMPORTANT: Replace YOUR_CONTACT_FORM_ID with your Formspree contact form ID
-  CONTACT_FORMSPREE_URL: 'https://formspree.io/f/YOUR_CONTACT_FORM_ID',
+  // Contact form is handled inline in contact.html (Formspree ID: xvznkqgd)
 };
 
 /* ----------------------------------------------------------------

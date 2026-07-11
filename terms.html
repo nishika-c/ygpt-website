@@ -23,14 +23,16 @@
   <link rel="icon"             href="assets/images/icon.svg"    type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
   <link rel="manifest"         href="/site.webmanifest">
+  <!-- For production: swap to dist/ versions -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="dist/style.min.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mobile.css">
+  <!-- For production: swap to dist/ versions -->
   <!-- Google Analytics 4 — replace G-XXXXXXXXXX with real Measurement ID to activate -->
   <!--
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -112,7 +114,11 @@
           </ul>
         </li>
   </ul>
-  <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
+  <div class="nav-actions">
+    <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
+    <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></button>
+    <a href="contact.html" class="nav-icon-btn" aria-label="Join YGPT" title="Join / Profile"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+  </div>
   <button class="nav-hamburger" type="button" aria-label="Open navigation menu"
           aria-expanded="false" aria-controls="nav-links">&#9776;</button>
 </nav>
@@ -236,6 +242,6 @@
     <polyline points="18 15 12 9 6 15"></polyline>
   </svg>
 </button>
-<script src="dist/main.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
