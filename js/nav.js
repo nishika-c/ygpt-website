@@ -100,8 +100,8 @@
       </ul>
 
       <div class="nav-actions">
-        <a href="index.html#newsletter" class="btn-dark nav-cta">Join Now</a>
-        <button class="nav-icon-btn" type="button" aria-label="Notifications" title="Notifications">
+        <a href="contact.html" class="btn-dark nav-cta">Join Now</a>
+        <button class="nav-icon-btn nav-bell-btn" type="button" aria-label="Notifications" title="Stay Updated" id="nav-bell-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                stroke-linejoin="round" aria-hidden="true" focusable="false">
@@ -109,14 +109,6 @@
             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
           </svg>
         </button>
-        <a href="contact.html" class="nav-icon-btn" aria-label="Join YGPT — member profile" title="Join / Profile">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-               stroke-linejoin="round" aria-hidden="true" focusable="false">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-        </a>
       </div>
 
       <button class="nav-hamburger"

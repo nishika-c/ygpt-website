@@ -698,9 +698,6 @@ window._initGrowDropdown();
 
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
-      /* Return focus to top of page */
-      const skipLink = qs('.skip-link');
-      if (skipLink) skipLink.focus();
     });
 
     window.addEventListener('scroll', updateBtn, { passive: true });
@@ -784,5 +781,172 @@ window._initGrowDropdown();
 
   } catch (err) {
     console.warn('[YGPT] initCityPrefill failed:', err);
+  }
+})();
+
+
+/* ================================================================
+   13 — BELL NOTIFICATION TOAST
+   Shows a brief "coming soon" toast when bell icon is clicked.
+================================================================ */
+(function initBellToast() {
+  try {
+    /* Create toast element */
+    const toast = document.createElement('div');
+    toast.id = 'bell-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.textContent = '🔔 Notifications coming soon!';
+    toast.style.cssText = `
+      position: fixed;
+      top: 90px;
+      right: 24px;
+      background: var(--black);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-family: var(--font-body, 'Montserrat', sans-serif);
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 9999;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    `;
+    document.body.appendChild(toast);
+
+    let hideTimer = null;
+
+    function showToast() {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+      if (hideTimer) clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-8px)';
+      }, 2500);
+    }
+
+    /* Attach to bell button — works on all pages */
+    document.addEventListener('click', (e) => {
+      const bellBtn = e.target.closest('.nav-icon-btn[aria-label="Notifications"]');
+      if (bellBtn) {
+        e.preventDefault();
+        showToast();
+      }
+    });
+
+  } catch (err) {
+    console.warn('[YGPT] initBellToast failed:', err);
+  }
+})();
+
+
+/* ================================================================
+   13 — BELL TOAST NOTIFICATION
+   Shows a small toast when bell icon is clicked.
+================================================================ */
+(function initBellToast() {
+  try {
+    document.addEventListener('click', (e) => {
+      const bell = e.target.closest('#nav-bell-btn');
+      if (!bell) return;
+
+      let toast = document.getElementById('bell-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'bell-toast';
+        toast.className = 'bell-toast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        toast.innerHTML = `🔔 Stay in the loop!<br><a href="index.html#newsletter">Subscribe to our newsletter</a> for updates on events, seminars & club activities.`;
+        document.body.appendChild(toast);
+      }
+
+      toast.classList.add('visible');
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => toast.classList.remove('visible'), 4000);
+    });
+  } catch (err) {
+    console.warn('[YGPT] initBellToast failed:', err);
+  }
+})();
+
+
+/* ================================================================
+   13 — BELL TOAST NOTIFICATION
+================================================================ */
+(function initBellToast() {
+  try {
+    const bell = qs('.nav-icon-btn[aria-label="Notifications"]');
+    if (!bell) return;
+
+    /* Create toast element */
+    const toast = document.createElement('div');
+    toast.id = 'bell-toast';
+    toast.className = 'bell-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.innerHTML = `
+      <span class="bell-toast-text">🔔 Stay updated on YGPT events, seminars and club activities near you!</span>
+      <a href="index.html#newsletter" class="bell-toast-link">Subscribe to Newsletter →</a>
+    `;
+    document.body.appendChild(toast);
+
+    let toastTimer = null;
+
+    function showToast() {
+      toast.classList.add('bell-toast--visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('bell-toast--visible'), 4000);
+    }
+
+    bell.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isVisible = toast.classList.contains('bell-toast--visible');
+      if (isVisible) {
+        toast.classList.remove('bell-toast--visible');
+        clearTimeout(toastTimer);
+      } else {
+        showToast();
+      }
+    });
+
+    /* Close toast on outside click */
+    document.addEventListener('click', (e) => {
+      if (!toast.contains(e.target) && e.target !== bell) {
+        toast.classList.remove('bell-toast--visible');
+      }
+    });
+
+  } catch (err) {
+    console.warn('[YGPT] initBellToast failed:', err);
+  }
+})();
+
+
+/* ================================================================
+   14 — NAV UPDATES + FOOTER LOGO
+   • Join Now → contact.html on all pages
+   • Remove profile/user icon from navbar
+   • Swap footer logo to transparent version
+================================================================ */
+(function initNavUpdates() {
+  try {
+    /* Update all Join Now buttons to go to contact.html */
+    qsa('.nav-cta').forEach(btn => btn.setAttribute('href', 'contact.html'));
+
+    /* Remove profile icon (the <a> nav-icon-btn in nav-actions) */
+    const profileIcon = qs('.nav-actions a.nav-icon-btn');
+    if (profileIcon) profileIcon.remove();
+
+    /* Swap footer logo to transparent PNG — removes white background box */
+    const footerLogo = qs('img.footer-logo');
+    if (footerLogo) footerLogo.setAttribute('src', 'assets/images/logo-transparent.png');
+
+  } catch (err) {
+    console.warn('[YGPT] initNavUpdates failed:', err);
   }
 })();
